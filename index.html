@@ -18,93 +18,124 @@
   <section class="section">
     <div class="container">
       <!-- Banner -->
-       <figure class="image is-fullwidth">
-  <img src="https://www.guepex.com/assets/images/logo/logo-dark.webp" alt="Banner Image" style="width: 50%; height: 20%; margin: 0 auto;">
-</figure>
-
-
-
-
-     
+      <figure class="image is-fullwidth">
+        <img src="https://www.guepex.com/assets/images/logo/logo-dark.webp" alt="Banner Image" style="width: 50%; height: 20%; margin: 0 auto;">
+      </figure>
 
       <!-- Inscription Form -->
       <div id="form-inscription" class="form-container active">
         <h1 class="title has-text-centered">Inscription Form</h1>
-      <form action="https://script.google.com/macros/s/AKfycby-Nz5vzfu2MlkVSwSiEpXpADK9RvXiAoO3ah8fMTGtbk5G2nwP90N3vvx-02RBpnMOMA/exec" method="POST"> <!-- Replace YOUR_WEB_APP_URL with the Web App URL -->
-        <div class="columns">
-          <div class="column">
-            <div class="field">
-              <label class="label">First Name</label>
-              <div class="control">
-                <input class="input" type="text" name="firstName" placeholder="First Name" required>
+        <form id="inscription-form" action="https://script.google.com/macros/s/AKfycby-Nz5vzfu2MlkVSwSiEpXpADK9RvXiAoO3ah8fMTGtbk5G2nwP90N3vvx-02RBpnMOMA/exec" method="POST">
+          <div class="columns">
+            <div class="column">
+              <div class="field">
+                <label class="label">First Name</label>
+                <div class="control">
+                  <input class="input" type="text" name="firstName" placeholder="First Name" required>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="field">
+                <label class="label">Last Name</label>
+                <div class="control">
+                  <input class="input" type="text" name="lastName" placeholder="Last Name" required>
+                </div>
               </div>
             </div>
           </div>
-          
-          <div class="column">
-            <div class="field">
-              <label class="label">Last Name</label>
-              <div class="control">
-                <input class="input" type="text" name="lastName" placeholder="Last Name" required>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="columns">
-          <div class="column">
-            <div class="field">
-              <label class="label">Phone Number</label>
-              <div class="control">
-                <input class="input" type="tel" name="phoneNumber" placeholder="Phone Number" required>
+          <div class="columns">
+            <div class="column">
+              <div class="field">
+                <label class="label">Phone Number</label>
+                <div class="control">
+                  <input class="input" type="tel" name="phoneNumber" placeholder="Phone Number" required>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                  <input class="input" type="email" name="email" placeholder="Email" required>
+                </div>
               </div>
             </div>
           </div>
-          <div class="column">
-            <div class="field">
-              <label class="label">Email</label>
-              <div class="control">
-                <input class="input" type="email" name="email" placeholder="Email" required>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="columns">
-          <div class="column">
-            <div class="field">
-              <label class="label">Boutique Name</label>
-              <div class="control">
-                <input class="input" type="text" name="boutiqueName" placeholder="Boutique Name" required>
+          <div class="columns">
+            <div class="column">
+              <div class="field">
+                <label class="label">Boutique Name</label>
+                <div class="control">
+                  <input class="input" type="text" name="boutiqueName" placeholder="Boutique Name" required>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="column">
-            <div class="field">
-    <label class="label">Agence</label>
-    <div class="control">
-      <select class="input" name="agency" required>
-        <option value="" disabled selected>Select an Agence</option>
-        <option value="El Harrouch">El Harrouch</option>
+            <div class="column">
+              <div class="field">
+                <label class="label">Agence</label>
+                <div class="control">
+                  <select class="input" name="agency" id="agency" required>
+                    <option value="" disabled selected>Select an Agence</option>
+                    <option value="El Harrouch">El Harrouch</option>
         <option value="Azzaba">Azzaba</option>
         <option value="Collo">Collo</option>
-        <option value="Tolga">Tolga</option>
-        <option value="Djamaa">Djamaa</option>
-        <option value="CHU">CHU</option>
-        <option value="Batna">Batna</option>
-        <option value="Barika">Barika</option>
-      </select>
-    </div>
-  </div>
+        <option value="Skikda">Skikda</option>
+                    <option value="El Khroub">El Khroub</option>
+                    <option value="Ali Mendjeli">Ali Mendjeli</option>
+                    <option value="sidi mebrouk">sidi mebrouk</option>
+                    <option value="El Milia">El Milia</option>
+                    <option value="Taher">Taher</option>
+                    <option value="Tébessa">Tébessa</option>
+                    <option value="Ain Mlila">Ain Mlila</option>
+                    <option value="Ténes">Ténes</option>
+                    <option value="Chlef">Chlef</option>
+                    <option value="Khemis Miliana">Khemis Miliana</option>
+                    <option value="Aïn Defla">Aïn Defla</option>
+                    <option value="Tlemcen">Tlemcen</option>
+                    <option value="Remchi">Remchi</option>
+                    <option value="Mecheria">Mecheria</option>
+                    <option value="Illizi">Illizi</option>
+                    <option value="Djelfa">Djelfa</option>
+                    <option value="Tamanrasset">Tamanrasset</option>
+                    <option value="Ouargla">Ouargla</option>
+                    <option value="Ghardaïa">Ghardaïa</option>
+                    <option value="Sidi Bel Abbes">Sidi Bel Abbes</option>
+                    <option value="Beni Saf">Beni Saf</option>
+                    <option value="Oran">Oran</option>
+                    <option value="Arzew">Arzew</option>
+                    <option value="Oued Rhiou">Oued Rhiou</option>
+                    <option value="Mostaganem">Mostaganem</option>
+                    <option value="Reghaïa">Reghaïa</option>
+                    <option value="Baraki">Baraki</option>
+                    <option value="Dar El Beïda">Dar El Beïda</option>
+                    <option value="Zeralda">Zeralda</option>
+                    <option value="Ouled Fayet">Ouled Fayet</option>
+                    <option value="Draria">Draria</option>
+                    <option value="Alger Centre">Alger Centre</option>
+                    <option value="Bab El Oued">Bab El Oued</option>
+                    <option value="Birtouta">Birtouta</option>
+                    <option value="Médéa">Médéa</option>
+                    <option value="Blida">Blida</option>
+                    <option value="Boufarik">Boufarik</option>
+                    <option value="Cherchell">Cherchell</option>
+                    <option value="El Kseur">El Kseur</option>
+                    <option value="Béjaïa">Béjaïa</option>
+                    <option value="Sor El Ghozlane">Sor El Ghozlane</option>
+                    <option value="Bordj Menaiel">Bordj Menaiel</option>
+                    <option value="Tizi Ouzzou">Tizi Ouzzou</option>
+                    <option value="Tizi Ghenif">Tizi Ghenif</option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="columns">
-         
-         
           <div class="column">
             <div class="field">
-              <label class="label">RC Number or Card Number ou </label>
+              <label class="label">RC Number or Card Number</label>
               <div class="control">
                 <input class="input" type="text" name="cardNumber" placeholder="Card Number" required>
               </div>
@@ -114,51 +145,56 @@
             <div class="field">
               <label class="label">NIF or Delivery Date</label>
               <div class="control">
-                <input class="input" type="text" name="dateOfBirth" required>
+                <input class="input" type="text" name="nif" required>
               </div>
             </div>
           </div>
-        </div>
-
-  
-
-        </div>
-
-
-        
-
-         <div class="columns">
-           <div class="column">
+            <div class="column">
             <div class="field">
-              <label class="label">NIS</label>
+              <label class="label">Date De Naissance</label>
               <div class="control">
-                <input class="input" type="text" name="nis" placeholder="Numero RC" >
+                <input class="input" type="text" name="dob" placeholder="Card Number" required>
               </div>
             </div>
           </div>
           <div class="column">
             <div class="field">
-              <label class="label">AI</label>
+              <label class="label">Résidence</label>
               <div class="control">
-                <input class="input" type="text" name="ai" placeholder="NIF" >
+                <input class="input" type="text" name="Residence" required>
               </div>
             </div>
           </div>
-        </div>
-              <div class="column">
-           <div class="column">
+
+          <div class="column">
+            <div class="field">
+              <label class="label">NIS</label>
+              <div class="control">
+                <input class="input" type="text" name="nis" placeholder="Numero RC">
+              </div>
+            </div>
+          </div>
+
+
+          <div class="column">
+            <div class="field">
+              <label class="label">AI</label>
+              <div class="control">
+                <input class="input" type="text" name="ai" placeholder="NIF">
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
             <div class="field">
               <label class="label">Address</label>
               <div class="control">
-                <input class="input" type="text" name="address" placeholder="Address" >
+                <input class="input" type="text" name="address" placeholder="Address">
               </div>
             </div>
-          </div> 
-         
-</div>
+          </div>
 
-
-        <div class="column">
+          <div class="column">
             <div class="field">
               <label class="label">&nbsp;</label>
               <div class="control">
@@ -166,41 +202,49 @@
               </div>
             </div>
           </div>
-      </form>
+        </form>
       </div>
-
-     
-
-      
+    </div>
   </section>
 
   <script>
-    // Tab switching logic
-    document.getElementById('tab-inscription').addEventListener('click', function() {
-      document.getElementById('form-inscription').classList.add('active');
-      document.getElementById('form-procuration').classList.remove('active');
-      document.getElementById('form-prospection').classList.remove('active');
-      this.classList.add('is-active');
-      document.getElementById('tab-procuration').classList.remove('is-active');
-      document.getElementById('tab-prospection').classList.remove('is-active');
-    });
+    document.getElementById('inscription-form').addEventListener('submit', function(event) {
+      var agency = document.getElementById('agency').value;
+      var actionUrl;
 
-    document.getElementById('tab-procuration').addEventListener('click', function() {
-      document.getElementById('form-procuration').classList.add('active');
-      document.getElementById('form-inscription').classList.remove('active');
-      document.getElementById('form-prospection').classList.remove('active');
-      this.classList.add('is-active');
-      document.getElementById('tab-inscription').classList.remove('is-active');
-      document.getElementById('tab-prospection').classList.remove('is-active');
-    });
+      // Set the action URL based on selected agency
+      if (["El Khroub", "Ali Mendjeli", "Sidi Mebrouk", "El Milia", "Taher", "Tébessa", "Ain Mlila"].includes(agency)) {
+        actionUrl = "https://script.google.com/macros/s/AKfycby-Nz5vzfu2MlkVSwSiEpXpADK9RvXiAoO3ah8fMTGtbk5G2nwP90N3vvx-02RBpnMOMA/exec";
+      } else if (["Ténes", "Chlef", "Khemis Miliana", "Aïn Defla"].includes(agency)) {
+        actionUrl = "https://script.google.com/macros/s/AKfycbyEBpPSF-oRmh6uC8gwG8P1lHrsQeRCuQ8eNAzucqEPkPNJ-UP5nDVGQi1YxSqevO6I/exec";
+      } else if (["Skikda", "El Harrouch", "Collo", "Azzaba"].includes(agency)) {
+        actionUrl = "https://script.google.com/macros/s/AKfycbwq7pBJd6A9bX9SwQfNYy4Yj5Z-feasvWm1v8fj2LfGOhoB5DUHhaQXGD-w2Kya-31r/exec";
+      }else if (["Tlemcen", "Remchi", "Mecheria", "Illizi", "Djelfa", "Tamanrasset", "Ouargla", "Ghardaïa"].includes(agency)) {
+        actionUrl = "https://script.google.com/macros/s/AKfycbytDMB4KVsynjgXuSBuDJe3uCHT1N852tajD-HUO202XrhN61p2HAu9jLDGXAOYjQr-/exec";
+      } else if (["Sidi Bel Abbes", "Beni Saf"].includes(agency)) {
+        actionUrl = "https://script.google.com/macros/s/AKfycbyqcYMTAXoEHlI7PZOEajpw5islf5rmCjgcgEWk2IjLCWb3oJ0c6Omb-ItygSuqbeOZ/exec";
+      } else if (["Oran", "Arzew", "Oued Rhiou", "Mostaganem"].includes(agency)) {
+        actionUrl = "https://script.google.com/macros/s/AKfycbyv-iN3jEm0iUGoCeqkqHUAENrhISkDkDvNwNuoE6WMfOWCUK422Es2PQCQVs_8NzEPkw/exec";
+      } else if (["Reghaïa", "Baraki"].includes(agency)) {
+        actionUrl = "https://script.google.com/macros/s/AKfycbwq7pBJd6A9bX9SwQfNYy4Yj5Z-feasvWm1v8fj2LfGOhoB5DUHhaQXGD-w2Kya-31r/exec";
+      } else if (["Dar El Beïda"].includes(agency)) {
+        actionUrl = "https://script.google.com/macros/s/AKfycbwoXQiuTZQG3CnAp12H1OrYUrpksd1lCHLZndZer6PYc6NRCXr1D8NMKAbZ1kElbIzs/exec";
+      } else if (["Zeralda"].includes(agency)) {
+        actionUrl = "https://script.google.com/macros/s/AKfycbwRe-mFtU5IdnGqWVzc1FwOHdx-qr5ccTUJhZsqNrkp2uv1tivmVJ4rZ4ajEigygB7v/exec";
+      } else if (["Ouled Fayet", "Draria"].includes(agency)) {
+        actionUrl = "https://script.google.com/macros/s/AKfycbzyJoXdoje5g_0K3vNtrQU4t6VugpMULQAiokMaiJ9Hb8qnIFt0U8K1_1pfxm5ftpKg/exec";
+      } else if (["Alger Centre", "Bab El Oued"].includes(agency)) {
+        actionUrl = "https://script.google.com/macros/s/AKfycbxRWzrgukg3TiE2Afp58mLoi4TSguaYRByDzbXH6KNbWFnujAlXA4ww0gylss9u5YQb/exec";
+      } else if (["Birtouta"].includes(agency)) {
+        actionUrl = "https://script.google.com/macros/s/AKfycbxrzbtBl4xTNHUCLtudivPFRtN2iQCia1pgplUvEW6aReeBZgQeB1olfEEpEqyUcbXiOg/exec";
+      } else if (["Médéa", "Blida", "Boufarik", "Cherchell"].includes(agency)) {
+        actionUrl = "https://script.google.com/macros/s/AKfycbx2EN0JDx8RNuH3NhkPnAkNVhGZJecVROdJYzfNsniHI342-UjoiquwdN2-pE5nZiQr/exec";
+      } else if (["El Kseur", "Béjaïa", "Sor El Ghozlane", "Bordj Menaiel", "Tizi Ouzzou", "Tizi Ghenif"].includes(agency)) {
+        actionUrl = "https://script.google.com/macros/s/AKfycbxLgWtkFAijiONMkc25VjfSy_OSDyc5ntgzKlQpUITVdHhsSpJfuL9oVgiOXSTJuyiitA/exec";
+      }
 
-    document.getElementById('tab-prospection').addEventListener('click', function() {
-      document.getElementById('form-prospection').classList.add('active');
-      document.getElementById('form-inscription').classList.remove('active');
-      document.getElementById('form-procuration').classList.remove('active');
-      this.classList.add('is-active');
-      document.getElementById('tab-inscription').classList.remove('is-active');
-      document.getElementById('tab-procuration').classList.remove('is-active');
+      // Set the form action URL dynamically
+      document.getElementById('inscription-form').action = actionUrl;
     });
   </script>
 </body>
