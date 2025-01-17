@@ -11,6 +11,10 @@
     }
     .form-container.active {
       display: block;
+
+       .label {
+    text-align: center;
+  }
     }
   </style>
 </head>
@@ -29,7 +33,7 @@
           <div class="columns">
             <div class="column">
               <div class="field">
-                <label class="label" has-text-centered>اللقب</label>
+                <label class="label" >اللقب</label>
                 <div class="control">
                   <input class="input" type="text" name="firstName" placeholder="First Name" required>
                 </div>
@@ -37,7 +41,7 @@
             </div>
             <div class="column">
               <div class="field">
-                <label class="label" has-text-centered>الاسم</label>
+                <label class="label" >الاسم</label>
                 <div class="control">
                   <input class="input" type="text" name="lastName" placeholder="Last Name" required>
                 </div>
@@ -48,7 +52,7 @@
           <div class="columns">
             <div class="column">
               <div class="field">
-                <label class="label" title-center>Phone Number</label>
+                <label class="label" >Phone Number</label>
                 <div class="control">
                   <input class="input" type="tel" name="phoneNumber" placeholder="Phone Number" required>
                 </div>
