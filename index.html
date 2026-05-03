@@ -1,273 +1,537 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Forms - GUEPEX</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
-  <style>
-    .form-container {
-      display: none;
-    }
-    .form-container.active {
-      display: block;
-
-       .label {
-    text-align: center;
-  }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Guepex | Tableau de bord complet (Skikda, Annaba, Jijel)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        body { background: #f1f5f9; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        .dashboard-card { background: white; border-radius: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03); }
+        .filter-select, .filter-input { border-radius: 0.5rem; border: 1px solid #e2e8f0; padding: 0.5rem 1rem; width: 100%; }
+        .table-wrapper { overflow-x: auto; border-radius: 0.75rem; border: 1px solid #edf2f7; background: white; }
+        .stat-table { min-width: 640px; width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        .stat-table th { background-color: #f8fafc; font-weight: 600; color: #1e293b; border-bottom: 1px solid #e2e8f0; padding: 0.75rem 0.5rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.03em; }
+        .stat-table td { padding: 0.7rem 0.5rem; border-bottom: 1px solid #f1f5f9; text-align: center; vertical-align: middle; }
+        .badge { background: #eef2ff; border-radius: 40px; padding: 0.2rem 0.6rem; font-weight: 500; font-size: 0.7rem; display: inline-block; }
+        .agent-name { font-weight: 500; color: #1e293b; }
+        .loading-spinner { border: 3px solid #e2e8f0; border-top: 3px solid #2563eb; border-radius: 50%; width: 36px; height: 36px; animation: spin 0.8s linear infinite; margin: 2rem auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .text-expired { color: #b91c1c; font-weight: 500; background: #fee2e2; border-radius: 20px; padding: 0.2rem 0.6rem; display: inline-block; }
+        .text-active { color: #15803d; font-weight: 500; background: #dcfce7; border-radius: 20px; padding: 0.2rem 0.6rem; display: inline-block; }
+        .chart-container { max-height: 280px; width: 100%; }
+        .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+    </style>
 </head>
-<body>
-  <section class="section">
-    <div class="container">
-      <!-- Banner -->
-      <figure class="image is-fullwidth">
-        <img src="https://www.guepex.com/assets/images/logo/logo-dark.webp" alt="Banner Image" style="width: 50%; height: 20%; margin: 0 auto;">
-      </figure>
+<body class="p-4 md:p-6">
 
-      <!-- Inscription Form -->
-      <div id="form-inscription" class="form-container active">
-        <h1 class="title has-text-centered">Inscription Form</h1>
-        <form id="inscription-form" action="https://script.google.com/macros/s/AKfycby-Nz5vzfu2MlkVSwSiEpXpADK9RvXiAoO3ah8fMTGtbk5G2nwP90N3vvx-02RBpnMOMA/exec" method="POST">
-          <div class="columns">
-            <div class="column">
-              <div class="field">
-                <label class="label" >NOM</label>
-                <div class="control">
-                  <input class="input" type="text" name="firstName" placeholder="" required>
-                </div>
-              </div>
-            </div>
-            <div class="column">
-              <div class="field">
-                <label class="label" >PRENOM</label>
-                <div class="control">
-                  <input class="input" type="text" name="lastName" placeholder="" required>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="columns">
-            <div class="column">
-              <div class="field">
-                <label class="label" >N° TELEPHONE</label>
-                <div class="control">
-                  <input class="input" type="tel" name="phoneNumber" placeholder="" required>
-                </div>
-              </div>
-            </div>
-            <div class="column">
-              <div class="field">
-                <label class="label">E-MAIL</label>
-                <div class="control">
-                  <input class="input" type="email" name="email" placeholder="" required>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="columns">
-            <div class="column">
-              <div class="field">
-                <label class="label">NOM DE BOUTIQUE</label>
-                <div class="control">
-                  <input class="input" type="text" name="boutiqueName" placeholder="" required>
-                </div>
-              </div>
-            </div>
-            <div class="column">
-              <div class="field">
-                <label class="label">AGENCE</label>
-                <div class="control">
-                   <select class="input" name="agency" id="agency" required>
-    <option value="" disabled selected text-align: center></option>
-    <option value="Aïn Defla">Aïn Defla</option>
-    <option value="Ain Mlila">Ain Mlila</option>
-    <option value="Ain Oulméne">Ain Oulméne</option>
-    <option value="Ali Mendjeli">Ali Mendjeli</option>
-    <option value="Annaba">Annaba</option>
-    <option value="Arzew">Arzew</option>
-    <option value="Azzaba">Azzaba</option>
-    <option value="Bab El Oued">Bab El Oued</option>
-    <option value="Baraki">Baraki</option>
-    <option value="Barika">Barika</option>
-    <option value="Batna">Batna</option>
-    <option value="Béjaïa">Béjaïa</option>
-    <option value="Beni Saf">Beni Saf</option>
-    <option value="Berhoum">Berhoum</option>
-    <option value="Birtouta">Birtouta</option>
-    <option value="Blida">Blida</option>
-    <option value="Bordj Bou Arreridj">Bordj Bou Arreridj</option>
-    <option value="Bordj Menaiel">Bordj Menaiel</option>
-    <option value="Boufarik">Boufarik</option>
-    <option value="Bougaa">Bougaa</option>
-    <option value="Bousaada">Bousaada</option>
-    <option value="Chlef">Chlef</option>
-    <option value="Cherchell">Cherchell</option>
-    <option value="CHU">CHU</option>
-    <option value="Collo">Collo</option>
-    <option value="Dar El Beïda">Dar El Beïda</option>
-    <option value="Djelfa">Djelfa</option>
-    <option value="Draria">Draria</option>
-    <option value="El Bouni Djemaa">El Bouni Djemaa</option>
-    <option value="El Eulma">El Eulma</option>
-    <option value="El Harrouch">El Harrouch</option>
-    <option value="El Hidhab">El Hidhab</option>
-    <option value="El Khroub">El Khroub</option>
-    <option value="El Kseur">El Kseur</option>
-    <option value="El Milia">El Milia</option>
-    <option value="Ghardaïa">Ghardaïa</option>
-    <option value="Illizi">Illizi</option>
-    <option value="Khemis Miliana">Khemis Miliana</option>
-    <option value="Médéa">Médéa</option>
-    <option value="Mecheria">Mecheria</option>
-    <option value="Mostaganem">Mostaganem</option>
-    <option value="Oran">Oran</option>
-    <option value="Ouargla">Ouargla</option>
-    <option value="Oued Rhiou">Oued Rhiou</option>
-    <option value="Oued Znati">Oued Znati</option>
-    <option value="Ouled Fayet">Ouled Fayet</option>
-    <option value="Remchi">Remchi</option>
-    <option value="Reghaïa">Reghaïa</option>
-    <option value="Sidi Bel Abbes">Sidi Bel Abbes</option>
-    <option value="sidi mebrouk">sidi mebrouk</option>
-    <option value="Skikda">Skikda</option>
-    <option value="Sor El Ghozlane">Sor El Ghozlane</option>
-    <option value="Taher">Taher</option>
-    <option value="Tamanrasset">Tamanrasset</option>
-    <option value="Tébessa">Tébessa</option>
-    <option value="Ténes">Ténes</option>
-    <option value="Tizi Ghenif">Tizi Ghenif</option>
-    <option value="Tizi Ouzzou">Tizi Ouzzou</option>
-    <option value="Tolga">Tolga</option>
-    <option value="Tlemcen">Tlemcen</option>
-    <option value="Zeralda">Zeralda</option>
-</select>
-
-                </div>
-              </div>
-            </div>
-          </div>
- <div class="columns">
-          <div class="column">
-            <div class="field">
-              <label class="label">RC / Pièce d’identité</label>
-              <div class="control">
-                <input class="input" type="text" name="cardNumber" placeholder="" required>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="field">
-              <label class="label">NIF / Date de délivrance</label>
-              <div class="control">
-                <input class="input" type="text" name="nif" required>
-              </div>
-            </div>
-          </div>
+<div class="max-w-[1600px] mx-auto">
+    <div class="flex flex-wrap justify-between items-center mb-6">
+        <div>
+            <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-slate-800"><i class="fas fa-chalkboard-user text-indigo-600 mr-3"></i>Suivi opérationnel <span class="text-indigo-500">| Skikda, Annaba & Jijel</span></h1>
+            <p class="text-slate-500 text-sm mt-1">Comptes ouverts · Expédition globale · Personnel · Congés & maladie · Locaux · STOPDESK / LIVREUR</p>
+        </div>
+        <div class="text-sm bg-white px-4 py-2 rounded-full shadow-sm"><i class="far fa-calendar-alt text-indigo-400 mr-1"></i> Données temps réel via API Sheets</div>
     </div>
-          <div class="columns">
-            <div class="column">
-            <div class="field">
-              <label class="label">DATE DE NAISSANCE</label>
-              <div class="control">
-                <input class="input" type="text" name="dob" placeholder="" required>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="field">
-              <label class="label">Résidence</label>
-              <div class="control">
-                <input class="input" type="text" name="residence" required>
-              </div>
-            </div>
-          </div>
-             </div> <!--
-<div class="columns">
-          <div class="column">
-            <div class="field">
-              <label class="label">NIS</label>
-              <div class="control">
-                <input class="input" type="text" name="nis" placeholder="">
-              </div>
-            </div>
-          </div>
 
- 
-          <div class="column">
-            <div class="field">
-              <label class="label">AI</label>
-              <div class="control">
-                <input class="input" type="text" name="ai" placeholder="">
-              </div>
-            </div>
-          </div> -->
-   </div>
-<!--
-          <div class="column">
-            <div class="field">
-              <label class="label">Address RC</label>
-              <div class="control">
-                <input class="input" type="text" name="address" placeholder="">
-              </div>
-            </div>
-          </div>   -->
+    <!-- Filtres : date range par défaut du 01/01/année courante à aujourd'hui -->
+    <div class="dashboard-card p-4 mb-7 border border-gray-100">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3 items-end">
+            <div><label class="block text-xs font-semibold text-gray-500 uppercase mb-1">📅 Période du</label><input type="text" id="fromDate" class="filter-select" placeholder="YYYY-MM-DD"></div>
+            <div><label class="block text-xs font-semibold text-gray-500 uppercase mb-1">📅 au</label><input type="text" id="toDate" class="filter-select" placeholder="YYYY-MM-DD"></div>
+            <div><label class="block text-xs font-semibold text-gray-500 uppercase mb-1">🏢 Agence</label><select id="agenceFilter" class="filter-select"><option value="ALL">🌐 Toutes</option></select></div>
+            <div><label class="block text-xs font-semibold text-gray-500 uppercase mb-1">📍 Wilaya</label><select id="wilayaFilter" class="filter-select"><option value="ALL">🌍 Toutes</option><option value="Skikda">Skikda</option><option value="Annaba">Annaba</option><option value="Jijel">Jijel</option></select></div>
+        </div>
+    </div>
 
-          <div class="column">
-            <div class="field">
-              <label class="label">&nbsp;</label>
-              <div class="control">
-                <button class="button is-primary is-fullwidth">Sign Up</button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>  
-  </section>
+    <div class="space-y-7">
+        <div class="dashboard-card p-5"><div class="card-title"><i class="fas fa-user-plus text-emerald-600"></i> Comptes ouverts & actifs (triés par # comptes)</div><div id="comptesOuvertsWrapper" class="table-wrapper"><div class="loading-spinner"></div></div></div>
+        <div class="dashboard-card p-5"><div class="card-title"><i class="fas fa-boxes text-blue-600"></i> Expédition globale (triée par colis expédiés)</div><div id="expeditionGlobaleWrapper" class="table-wrapper"><div class="loading-spinner"></div></div></div>
+        <div class="dashboard-card p-5"><div class="card-title"><i class="fas fa-users text-amber-600"></i> Personnel | Contrats & expiration (jours restants)</div><div id="personnelWrapper" class="table-wrapper"><div class="loading-spinner"></div></div></div>
+        <div class="dashboard-card p-5"><div class="card-title"><i class="fas fa-notes-medical text-rose-600"></i> Congés & arrêts maladie (détail + jours restants annuels)</div><div id="congeMaladieWrapper" class="table-wrapper"><div class="loading-spinner"></div></div></div>
+        <div class="dashboard-card p-5"><div class="card-title"><i class="fas fa-building text-purple-600"></i> Agences – performance colis (Stopdesk) – Type SD / HD</div><div id="agencesStopdeskWrapper" class="table-wrapper"><div class="loading-spinner"></div></div></div>
+        
+        <!-- Tableau Livreurs avec Wilaya ajoutée -->
+        <div class="dashboard-card p-5"><div class="card-title"><i class="fas fa-truck text-teal-600"></i> Livreurs – activité individuelle (triés par taux livraison)</div><div id="livreursWrapper" class="table-wrapper"><div class="loading-spinner"></div></div></div>
+        
+        <!-- Tableau Locaux récupéré depuis l'API LOCAL -->
+        <div class="dashboard-card p-5"><div class="card-title"><i class="fas fa-home text-indigo-600"></i> Locaux – durée & fin de contrat</div><div id="locauxWrapper" class="table-wrapper"><div class="loading-spinner"></div></div></div>
+        
+        <div class="dashboard-card p-5"><div class="card-title"><i class="fas fa-chart-line text-sky-600"></i> Aperçu mensuel • Colis expédiés vs livrés (période sélectionnée)</div><div class="chart-container"><canvas id="expChart" height="200"></canvas></div></div>
+    </div>
+</div>
 
-  <script>
-    document.getElementById('inscription-form').addEventListener('submit', function(event) {
-      var agency = document.getElementById('agency').value;
-      var actionUrl;
+<script>
+    (function() {
+        // ---------- API ----------
+        const API = {
+            compte: 'https://opensheet.elk.sh/1EpOCxjjz2EniTBZs9pzrDOILueDOG-g6UBzmvd_PD0o/les_ouvertures',
+            commercial: 'https://opensheet.elk.sh/1oVVU3Y7OrILjGzuVk_xExFoj_BaBqUa3x6HM6Ca0UEA/COMEMRCIAL',
+            agences: 'https://opensheet.elk.sh/1oVVU3Y7OrILjGzuVk_xExFoj_BaBqUa3x6HM6Ca0UEA/AGENCES',
+            exp2026: 'https://opensheet.elk.sh/1oVVU3Y7OrILjGzuVk_xExFoj_BaBqUa3x6HM6Ca0UEA/EXP',
+            exp2025: 'https://opensheet.elk.sh/1oVVU3Y7OrILjGzuVk_xExFoj_BaBqUa3x6HM6Ca0UEA/EXP_2025',
+            nvTop2026: 'https://opensheet.elk.sh/1oVVU3Y7OrILjGzuVk_xExFoj_BaBqUa3x6HM6Ca0UEA/STATISTIQUE2026',
+            nvTop2025: 'https://opensheet.elk.sh/1oVVU3Y7OrILjGzuVk_xExFoj_BaBqUa3x6HM6Ca0UEA/SATISTIQUE2025',
+            stopdesk: 'https://opensheet.elk.sh/1BkVe3pWCNCLqcZk1FWOqi3xUKb-Ww1-aWwmDbSIlsgQ/STOPDESK',
+            livreur: 'https://opensheet.elk.sh/1BkVe3pWCNCLqcZk1FWOqi3xUKb-Ww1-aWwmDbSIlsgQ/LIVREUR',
+            agents: 'https://opensheet.elk.sh/1BkVe3pWCNCLqcZk1FWOqi3xUKb-Ww1-aWwmDbSIlsgQ/AGENTS',
+            maladie: 'https://opensheet.elk.sh/1BkVe3pWCNCLqcZk1FWOqi3xUKb-Ww1-aWwmDbSIlsgQ/MALADIE',
+            local: 'https://opensheet.elk.sh/1BkVe3pWCNCLqcZk1FWOqi3xUKb-Ww1-aWwmDbSIlsgQ/LOCAL'
+        };
+        const TARGET_WILAYAS = ['Skikda', 'Annaba', 'Jijel'];
+        let store = { comptesRaw:[], commercialRaw:[], agencesRaw:[], exp2025Raw:[], exp2026Raw:[], nvTop2026Raw:[], nvTop2025Raw:[], stopdeskRaw:[], livreurRaw:[], agentsRaw:[], maladieRaw:[], localRaw:[] };
+        let currentAgence = 'ALL', currentWilaya = 'ALL', fromDate = null, toDate = null;
+        let chartInstance = null;
 
-      // Set the action URL based on selected agency
-      if (["El Khroub", "Ali Mendjeli", "Sidi Mebrouk", "El Milia", "Taher", "Tébessa", "Ain Mlila"].includes(agency)) {
-        actionUrl = "https://script.google.com/macros/s/AKfycby-Nz5vzfu2MlkVSwSiEpXpADK9RvXiAoO3ah8fMTGtbk5G2nwP90N3vvx-02RBpnMOMA/exec";
-      } else if (["Ténes", "Chlef", "Khemis Miliana", "Aïn Defla"].includes(agency)) {
-        actionUrl = "https://script.google.com/macros/s/AKfycbyEBpPSF-oRmh6uC8gwG8P1lHrsQeRCuQ8eNAzucqEPkPNJ-UP5nDVGQi1YxSqevO6I/exec";
-      } else if (["Skikda", "El Harrouch", "Collo", "Azzaba"].includes(agency)) {
-        actionUrl = "https://script.google.com/macros/s/AKfycbwq7pBJd6A9bX9SwQfNYy4Yj5Z-feasvWm1v8fj2LfGOhoB5DUHhaQXGD-w2Kya-31r/exec";
-      }else if (["Tlemcen", "Remchi", "Mecheria", "Illizi", "Djelfa", "Tamanrasset", "Ouargla", "Ghardaïa"].includes(agency)) {
-        actionUrl = "https://script.google.com/macros/s/AKfycbytDMB4KVsynjgXuSBuDJe3uCHT1N852tajD-HUO202XrhN61p2HAu9jLDGXAOYjQr-/exec";
-      } else if (["Sidi Bel Abbes", "Beni Saf"].includes(agency)) {
-        actionUrl = "https://script.google.com/macros/s/AKfycbyqcYMTAXoEHlI7PZOEajpw5islf5rmCjgcgEWk2IjLCWb3oJ0c6Omb-ItygSuqbeOZ/exec";
-      } else if (["Oran", "Arzew", "Oued Rhiou", "Mostaganem"].includes(agency)) {
-        actionUrl = "https://script.google.com/macros/s/AKfycbyv-iN3jEm0iUGoCeqkqHUAENrhISkDkDvNwNuoE6WMfOWCUK422Es2PQCQVs_8NzEPkw/exec";
-      } else if (["Reghaïa", "Baraki"].includes(agency)) {
-        actionUrl = "https://script.google.com/macros/s/AKfycbwq7pBJd6A9bX9SwQfNYy4Yj5Z-feasvWm1v8fj2LfGOhoB5DUHhaQXGD-w2Kya-31r/exec";
-      } else if (["Dar El Beïda"].includes(agency)) {
-        actionUrl = "https://script.google.com/macros/s/AKfycbwoXQiuTZQG3CnAp12H1OrYUrpksd1lCHLZndZer6PYc6NRCXr1D8NMKAbZ1kElbIzs/exec";
-      } else if (["Zeralda"].includes(agency)) {
-        actionUrl = "https://script.google.com/macros/s/AKfycbwRe-mFtU5IdnGqWVzc1FwOHdx-qr5ccTUJhZsqNrkp2uv1tivmVJ4rZ4ajEigygB7v/exec";
-      } else if (["Ouled Fayet", "Draria"].includes(agency)) {
-        actionUrl = "https://script.google.com/macros/s/AKfycbzyJoXdoje5g_0K3vNtrQU4t6VugpMULQAiokMaiJ9Hb8qnIFt0U8K1_1pfxm5ftpKg/exec";
-      } else if (["Alger Centre", "Bab El Oued"].includes(agency)) {
-        actionUrl = "https://script.google.com/macros/s/AKfycbxRWzrgukg3TiE2Afp58mLoi4TSguaYRByDzbXH6KNbWFnujAlXA4ww0gylss9u5YQb/exec";
-      } else if (["Birtouta"].includes(agency)) {
-        actionUrl = "https://script.google.com/macros/s/AKfycbxrzbtBl4xTNHUCLtudivPFRtN2iQCia1pgplUvEW6aReeBZgQeB1olfEEpEqyUcbXiOg/exec";
-      } else if (["Médéa", "Blida", "Boufarik", "Cherchell"].includes(agency)) {
-        actionUrl = "https://script.google.com/macros/s/AKfycbx2EN0JDx8RNuH3NhkPnAkNVhGZJecVROdJYzfNsniHI342-UjoiquwdN2-pE5nZiQr/exec";
-      } else if (["El Kseur", "Béjaïa", "Sor El Ghozlane", "Bordj Menaiel", "Tizi Ouzzou", "Tizi Ghenif"].includes(agency)) {
-        actionUrl = "https://script.google.com/macros/s/AKfycbxLgWtkFAijiONMkc25VjfSy_OSDyc5ntgzKlQpUITVdHhsSpJfuL9oVgiOXSTJuyiitA/exec";
-      }
+        // Helper dates
+        function parseDate(str) {
+            if (!str) return null;
+            if (typeof str === 'string' && str.includes('/')) {
+                let parts = str.split('/');
+                if (parts.length === 3) return new Date(parts[2], parts[1]-1, parts[0]);
+            }
+            return new Date(str);
+        }
+        function formatDate(date) { return date.toISOString().slice(0,10); }
+        function daysBetween(date1, date2) { return Math.ceil((date2 - date1) / (1000*60*60*24)); }
 
-      // Set the form action URL dynamically
-      document.getElementById('inscription-form').action = actionUrl;
-    });
-  </script>
+        // Par défaut : du 1er janvier de l'année courante à aujourd'hui
+        function setDefaultDateRange() {
+            const today = new Date();
+            const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
+            fromDate = formatDate(firstDayOfYear);
+            toDate = formatDate(today);
+            const fromPicker = document.getElementById('fromDate');
+            const toPicker = document.getElementById('toDate');
+            if (fromPicker && toPicker) {
+                fromPicker.value = fromDate;
+                toPicker.value = toDate;
+            }
+        }
+
+        function getYearMonthsFromDateRange() {
+            if (!fromDate || !toDate) return [];
+            let start = new Date(fromDate);
+            let end = new Date(toDate);
+            let result = [];
+            let cur = new Date(start.getFullYear(), start.getMonth(), 1);
+            while (cur <= end) {
+                result.push({ year: cur.getFullYear(), month: cur.getMonth() + 1 });
+                cur.setMonth(cur.getMonth() + 1);
+            }
+            return result;
+        }
+
+        // ***** 1. Comptes ouverts *****
+        function buildComptesOuvertsTable() {
+            const comptes = store.comptesRaw || [];
+            if (comptes.length === 0) return [];
+            
+            const agenceMap = new Map();
+            (store.agencesRaw || []).forEach(a => {
+                let name = a['agence s'] || a['agence f'];
+                let wil = a['wilaya'];
+                if (name && wil) {
+                    const normalized = name.trim().toLowerCase().replace(/[\[\]()]/g, '');
+                    agenceMap.set(normalized, { officialName: name, wilaya: wil });
+                }
+            });
+
+            let filteredComptes = comptes;
+            if (fromDate && toDate) {
+                const from = new Date(fromDate);
+                const to = new Date(toDate);
+                filteredComptes = comptes.filter(row => {
+                    let d = row['DATE'];
+                    if (!d) return false;
+                    let dateObj = parseDate(d);
+                    return dateObj && dateObj >= from && dateObj <= to;
+                });
+            }
+
+            const group = new Map();
+            for (const row of filteredComptes) {
+                let rawAgence = (row['Agence'] || '').trim();
+                let wilayaFromRow = (row['WILAYA'] || '').trim();
+                let normalized = rawAgence.toLowerCase().replace(/[\[\]()]/g, '');
+                let matched = agenceMap.get(normalized);
+                let finalWilaya = null;
+                let finalAgenceName = rawAgence;
+
+                if (matched) {
+                    finalWilaya = matched.wilaya;
+                    finalAgenceName = matched.officialName;
+                } else if (wilayaFromRow && TARGET_WILAYAS.includes(wilayaFromRow)) {
+                    finalWilaya = wilayaFromRow;
+                } else {
+                    continue;
+                }
+
+                if (!finalWilaya || !TARGET_WILAYAS.includes(finalWilaya)) continue;
+
+                const actif = (row['ACTIF/INACTIF'] || '').toUpperCase() === 'ACTIF';
+                const key = `${finalWilaya}|${finalAgenceName}`;
+                if (!group.has(key)) group.set(key, { wilaya: finalWilaya, agence: finalAgenceName, total: 0, actif: 0 });
+                const entry = group.get(key);
+                entry.total++;
+                if (actif) entry.actif++;
+            }
+
+            let results = Array.from(group.values()).map(v => ({
+                ...v,
+                tauxConversion: v.total > 0 ? (v.actif / v.total * 100).toFixed(1) : 0
+            }));
+            results = results.filter(r => (currentAgence === 'ALL' || r.agence === currentAgence) && (currentWilaya === 'ALL' || r.wilaya === currentWilaya));
+            results.sort((a,b) => b.total - a.total);
+            return results;
+        }
+
+        // ***** 2. Expédition globale *****
+        function buildExpeditionGlobale() {
+            let yearMonths = getYearMonthsFromDateRange();
+            if (yearMonths.length === 0) return [];
+            let dataSheets = { 2025: store.exp2025Raw || [], 2026: store.exp2026Raw || [] };
+            let map = new Map();
+            yearMonths.forEach(({year, month}) => {
+                let rows = dataSheets[year] || [];
+                rows.forEach(row => {
+                    let wil = row['Wilaya'] || '';
+                    if (!TARGET_WILAYAS.includes(wil)) return;
+                    let ag = row['Agence'] || 'Indéfini';
+                    let key = `${wil}|${ag}`;
+                    if (!map.has(key)) map.set(key, { wilaya: wil, agence: ag, exp:0, liv:0 });
+                    let entry = map.get(key);
+                    entry.exp += parseInt(row[`EXP${month}`]) || 0;
+                    entry.liv += parseInt(row[`LIV${month}`]) || 0;
+                });
+            });
+            let results = Array.from(map.values()).map(r => ({ ...r, tauxLivraison: r.exp>0 ? ((r.liv/r.exp)*100).toFixed(1) : 0 }));
+            results = results.filter(r => (currentAgence==='ALL' || r.agence===currentAgence) && (currentWilaya==='ALL' || r.wilaya===currentWilaya));
+            results.sort((a,b) => b.exp - a.exp);
+            return results;
+        }
+
+        // ***** 3. Personnel *****
+        function formatDuration(days) {
+            if (days <= 0) return '<span class="text-expired">Expiré</span>';
+            let months = Math.floor(days / 30);
+            let remainingDays = days % 30;
+            if (months === 0) return `<span class="text-active">${remainingDays} jour(s)</span>`;
+            return `<span class="text-active">${months} mois et ${remainingDays} jour(s)</span>`;
+        }
+        function buildPersonnelTable() {
+            let agents = store.agentsRaw || [];
+            let filtered = agents.filter(a => TARGET_WILAYAS.includes((a['WILAYA'] || '')));
+            if(currentAgence !== 'ALL') filtered = filtered.filter(a => (a['AGENCE']||'') === currentAgence);
+            if(currentWilaya !== 'ALL') filtered = filtered.filter(a => (a['WILAYA']||'') === currentWilaya);
+            const today = new Date();
+            return filtered.map(a => {
+                let finStr = a['DATE FIN CONTRA'] || '';
+                let resteHtml = '';
+                if (finStr) {
+                    let finDate = parseDate(finStr);
+                    if (finDate && !isNaN(finDate)) {
+                        let diff = daysBetween(today, finDate);
+                        resteHtml = formatDuration(diff);
+                    } else resteHtml = '<span class="text-expired">Invalide</span>';
+                } else resteHtml = '<span class="text-expired">Non défini</span>';
+                return {
+                    wilaya: a['WILAYA'] || 'Skikda',
+                    agence: a['AGENCE'] || '-',
+                    agentName: a['AGENT NAME'] || '-',
+                    profession: a['PRO'] || '-',
+                    typeContrat: a['TYPE CONTRA'] || 'CDD',
+                    datePremierContrat: a['DATE START'] || 'N/C',
+                    dateFinContrat: finStr || 'N/C',
+                    tempsRestantHtml: resteHtml
+                };
+            });
+        }
+
+        // ***** 4. Congés & maladie *****
+        function computeRemainingDays(agentStartDateStr, takenCongesDays) {
+            let start = parseDate(agentStartDateStr);
+            if (!start || isNaN(start)) return 0;
+            let today = new Date();
+            let totalAcquired = 0;
+            let firstJuly = new Date(start.getFullYear(), 6, 1);
+            if (start >= firstJuly) firstJuly = new Date(start.getFullYear() + 1, 6, 1);
+            let monthDiff = (firstJuly.getFullYear() - start.getFullYear()) * 12 + (firstJuly.getMonth() - start.getMonth());
+            totalAcquired += monthDiff * 2.5;
+            let cycleStart = firstJuly;
+            while (cycleStart < today) {
+                let cycleEnd = new Date(cycleStart.getFullYear() + 1, 5, 30);
+                if (cycleEnd < today) {
+                    totalAcquired += 30;
+                    cycleStart = new Date(cycleStart.getFullYear() + 1, 6, 1);
+                } else break;
+            }
+            let remaining = totalAcquired - takenCongesDays;
+            return Math.floor(Math.max(0, remaining));
+        }
+        function buildCongeMaladieTable() {
+            let rows = store.maladieRaw || [];
+            let agentsDataRaw = store.agentsRaw || [];
+            let agentStartMap = new Map();
+            agentsDataRaw.forEach(a => {
+                let name = a['AGENT NAME'];
+                let start = a['DATE START'];
+                if (name && start) agentStartMap.set(name, start);
+            });
+            let takenDaysMap = new Map();
+            rows.forEach(r => {
+                let type = (r['TYPE'] || '').toLowerCase();
+                if (type !== 'congé') return;
+                let agent = r['AGENT NAME'];
+                if (!agent) return;
+                let deb = r['ST DATE'], fin = r['FN DATE'];
+                if (deb && fin) {
+                    let startDate = parseDate(deb);
+                    let endDate = parseDate(fin);
+                    if (startDate && endDate && !isNaN(startDate) && !isNaN(endDate)) {
+                        let days = daysBetween(startDate, endDate) + 1;
+                        takenDaysMap.set(agent, (takenDaysMap.get(agent) || 0) + days);
+                    }
+                }
+            });
+            let remainingMap = new Map();
+            for (let [agent, startStr] of agentStartMap.entries()) {
+                let taken = takenDaysMap.get(agent) || 0;
+                let remaining = computeRemainingDays(startStr, taken);
+                remainingMap.set(agent, remaining);
+            }
+            let filteredRows = rows.filter(row => {
+                let wil = row['WILAYA'] || '';
+                let ag = row['AGENCE'] || '';
+                if (!TARGET_WILAYAS.includes(wil)) return false;
+                if (currentAgence !== 'ALL' && ag !== currentAgence) return false;
+                if (currentWilaya !== 'ALL' && wil !== currentWilaya) return false;
+                return true;
+            });
+            return filteredRows.map(row => {
+                let agent = row['AGENT NAME'] || '';
+                let type = (row['TYPE'] || '').toLowerCase();
+                let joursRestants = '-';
+                if (type === 'congé') {
+                    let remaining = remainingMap.get(agent);
+                    if (remaining !== undefined) joursRestants = `${remaining} j`;
+                }
+                return {
+                    wilaya: row['WILAYA'] || '',
+                    agence: row['AGENCE'] || '',
+                    agentName: agent,
+                    profession: row['PRO'] || '',
+                    type: row['TYPE'] || '',
+                    dateDebut: row['ST DATE'] || '',
+                    dateFin: row['FN DATE'] || '',
+                    joursRestants: joursRestants
+                };
+            });
+        }
+
+        // ***** 5. Stopdesk *****
+        function buildAgencesStopdesk() {
+            let data = store.stopdeskRaw || [];
+            let yearMonths = getYearMonthsFromDateRange();
+            if (yearMonths.length === 0) return [];
+            let agenceMap = new Map();
+            data.forEach(row => {
+                let agence = row['AGENCE'] || '';
+                let type = row['TYPE'] || '';
+                if (!agence || !type) return;
+                let wil = row['WILAYA'] || '';
+                if (!TARGET_WILAYAS.includes(wil) && wil !== '') return;
+                let totalRecu = 0, totalLivre = 0;
+                yearMonths.forEach(({month}) => {
+                    totalRecu += parseInt(row[`COLIS RECU${month}`]) || 0;
+                    totalLivre += parseInt(row[`COLIS LIVRE${month}`]) || 0;
+                });
+                let key = `${agence}|${type}`;
+                if(!agenceMap.has(key)) agenceMap.set(key, { agence, type, wilaya: wil, totalRecu:0, totalLivre:0 });
+                let entry = agenceMap.get(key);
+                entry.totalRecu += totalRecu;
+                entry.totalLivre += totalLivre;
+            });
+            let results = Array.from(agenceMap.values()).map(entry => ({
+                wilaya: entry.wilaya || 'N/C', agence: entry.agence, type: entry.type,
+                totalRecu: entry.totalRecu, totalLivre: entry.totalLivre,
+                tauxLivraison: entry.totalRecu>0 ? ((entry.totalLivre/entry.totalRecu)*100).toFixed(1) : 0
+            }));
+            results = results.filter(r => (currentAgence==='ALL' || r.agence===currentAgence) && (currentWilaya==='ALL' || r.wilaya===currentWilaya));
+            results.sort((a,b) => a.wilaya.localeCompare(b.wilaya) || a.agence.localeCompare(b.agence));
+            return results;
+        }
+
+        // ***** 6. Livreurs – avec Wilaya et calcul taux livraison corrigé *****
+        function buildLivreursTable() {
+            let data = store.livreurRaw || [];
+            let yearMonths = getYearMonthsFromDateRange();
+            if (yearMonths.length === 0) return [];
+            let results = [];
+            data.forEach(row => {
+                let wil = row['WILAYA'] || '';
+                if (!TARGET_WILAYAS.includes(wil)) return;
+                let agence = row['AGENCE'] || '';
+                let nom = row['LIVREUR'] || '';
+                let recu = 0, livre = 0;
+                yearMonths.forEach(({month}) => {
+                    recu += parseInt(row[`COLIS RECU${month}`]) || 0;
+                    livre += parseInt(row[`COLIS LIVRE${month}`]) || 0;
+                });
+                let taux = 0;
+                if (recu + livre > 0) taux = (livre * 100) / (recu + livre);
+                results.push({ wilaya: wil, agence, livreur: nom, recu, livre, taux: taux.toFixed(1) });
+            });
+            results = results.filter(r => currentAgence==='ALL' || r.agence===currentAgence);
+            results.sort((a,b) => parseFloat(b.taux) - parseFloat(a.taux));
+            return results;
+        }
+
+        // ***** 7. Locaux – Données depuis API LOCAL *****
+        function buildLocauxTable() {
+            let data = store.localRaw || [];
+            if (!data || data.length === 0) return [];
+            let filtered = data.filter(row => {
+                let wil = row['WILAYA'] || '';
+                if (!TARGET_WILAYAS.includes(wil)) return false;
+                if (currentAgence !== 'ALL' && (row['AGENCE'] || '') !== currentAgence) return false;
+                if (currentWilaya !== 'ALL' && wil !== currentWilaya) return false;
+                return true;
+            });
+            const today = new Date();
+            return filtered.map(row => {
+                let dureeContrat = row['La durée du contrat'] || '-';
+                let finContrat = row['FIN CONTRAT'] || '';
+                let restant = '-';
+                if (finContrat) {
+                    let finDate = parseDate(finContrat);
+                    if (finDate && !isNaN(finDate)) {
+                        let daysLeft = daysBetween(today, finDate);
+                        if (daysLeft > 0) {
+                            let months = Math.floor(daysLeft / 30);
+                            let days = daysLeft % 30;
+                            restant = months > 0 ? `${months} mois et ${days} jours` : `${days} jours`;
+                        } else if (daysLeft <= 0) {
+                            restant = '<span class="text-expired">Expiré</span>';
+                        }
+                    }
+                }
+                return {
+                    wilaya: row['WILAYA'] || '',
+                    agence: row['AGENCE'] || '',
+                    dureeContrat: dureeContrat,
+                    finContrat: finContrat || 'N/C',
+                    restant: restant
+                };
+            });
+        }
+
+        // Graphique
+        function updateChart() {
+            let yearMonths = getYearMonthsFromDateRange();
+            if (yearMonths.length === 0) return;
+            let dataSheets = { 2025: store.exp2025Raw || [], 2026: store.exp2026Raw || [] };
+            let totalExp = new Array(12).fill(0);
+            let totalLiv = new Array(12).fill(0);
+            yearMonths.forEach(({year, month}) => {
+                let rows = dataSheets[year] || [];
+                rows.forEach(row => {
+                    let wil = row['Wilaya'] || '';
+                    if (!TARGET_WILAYAS.includes(wil)) return;
+                    if (currentAgence !== 'ALL' && row['Agence'] !== currentAgence) return;
+                    if (currentWilaya !== 'ALL' && wil !== currentWilaya) return;
+                    totalExp[month-1] += parseInt(row[`EXP${month}`]) || 0;
+                    totalLiv[month-1] += parseInt(row[`LIV${month}`]) || 0;
+                });
+            });
+            const ctx = document.getElementById('expChart').getContext('2d');
+            if(chartInstance) chartInstance.destroy();
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: { labels: ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'],
+                    datasets: [
+                        { label: 'Colis expédiés', data: totalExp, backgroundColor: '#3b82f6', borderRadius: 6 },
+                        { label: 'Colis livrés', data: totalLiv, backgroundColor: '#10b981', borderRadius: 6 }
+                    ] },
+                options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'top' } } }
+            });
+        }
+
+        // Rendu HTML
+        function renderComptes() { const data = buildComptesOuvertsTable(); const html = `<table class="stat-table"><thead><tr><th>Wilaya</th><th>Agence</th><th># Comptes ouverts</th><th># Actifs</th><th>Taux conversion</th></tr></thead><tbody>${data.map(r => `<tr><td class="font-medium">${r.wilaya}</td><td class="font-medium">${r.agence}</td><td class="font-bold">${r.total}</td><td>${r.actif}</td><td><span class="badge">${r.tauxConversion}%</span></td></tr>`).join('') || '<tr><td colspan="5" class="text-center py-6">Aucune donnée pour la période</td></tr>'}</tbody></table>`; document.getElementById('comptesOuvertsWrapper').innerHTML = html; }
+        function renderExpedition() { const data = buildExpeditionGlobale(); const html = `<table class="stat-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Colis expédiés</th><th>Colis livrés</th><th>Taux livraison</th></tr></thead><tbody>${data.map(r => `<tr><td class="font-medium">${r.wilaya}</td><td class="font-medium">${r.agence}</td><td class="font-bold">${r.exp}</td><td>${r.liv}</td><td><span class="badge">${r.tauxLivraison}%</span></td></tr>`).join('') || '<tr><td colspan="5" class="text-center py-6">Aucune donnée</td></tr>'}</tbody></table>`; document.getElementById('expeditionGlobaleWrapper').innerHTML = html; }
+        function renderPersonnel() { const data = buildPersonnelTable(); const html = `<table class="stat-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Agent</th><th>Profession</th><th>Type contrat</th><th>Date 1er contrat</th><th>Date fin contrat</th><th>Temps restant</th></tr></thead><tbody>${data.map(p => `<tr><td class="font-medium">${p.wilaya}</td><td class="font-medium">${p.agence}</td><td class="agent-name">${p.agentName}</td><td>${p.profession}</td><td>${p.typeContrat}</td><td>${p.datePremierContrat}</td><td>${p.dateFinContrat}</td><td class="text-center">${p.tempsRestantHtml}</td></tr>`).join('') || '<tr><td colspan="8" class="text-center py-6">Aucun agent</td></tr>'}</tbody></tr>`; document.getElementById('personnelWrapper').innerHTML = html; }
+        function renderConges() { const data = buildCongeMaladieTable(); const html = `<table class="stat-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Agent</th><th>Profession</th><th>Type</th><th>Date début</th><th>Date fin</th><th>Jours restants</th></tr></thead><tbody>${data.map(c => `<tr><td class="font-medium">${c.wilaya}</td><td class="font-medium">${c.agence}</td><td class="agent-name">${c.agentName}</td><td>${c.profession}</td><td><span class="badge">${c.type}</span></td><td>${c.dateDebut}</td><td>${c.dateFin}</td><td class="font-bold text-indigo-700">${c.joursRestants}</td><tr>`).join('') || '<tr><td colspan="8" class="text-center py-6">Aucune donnée de congé/maladie</td></tr>'}</tbody></table>`; document.getElementById('congeMaladieWrapper').innerHTML = html; }
+        function renderStopdesk() { const data = buildAgencesStopdesk(); const html = `<table class="stat-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Type</th><th>Colis reçus</th><th>Colis livrés</th><th>Taux livraison</th></tr></thead><tbody>${data.map(s => `<tr><td class="font-medium">${s.wilaya}</td><td class="font-medium">${s.agence}</td><td><span class="badge">${s.type}</span></td><td class="font-bold">${s.totalRecu}</td><td>${s.totalLivre}</td><td><span class="badge">${s.tauxLivraison}%</span></td></tr>`).join('') || '<tr><td colspan="6" class="text-center py-6">Aucune donnée Stopdesk</td></tr>'}</tbody></table>`; document.getElementById('agencesStopdeskWrapper').innerHTML = html; }
+        function renderLivreurs() { const data = buildLivreursTable(); const html = `<table class="stat-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Nom livreur</th><th>Colis reçus</th><th>Colis livrés</th><th>Taux livraison</th></tr></thead><tbody>${data.map(l => `<tr><td class="font-medium">${l.wilaya}</td><td class="font-medium">${l.agence}</td><td class="agent-name">${l.livreur}</td><td class="font-bold">${l.recu}</td><td>${l.livre}</td><td><span class="badge">${l.taux}%</span></td></tr>`).join('') || '<tr><td colspan="6" class="text-center py-6">Aucun livreur</td></tr>'}</tbody></table>`; document.getElementById('livreursWrapper').innerHTML = html; }
+        function renderLocaux() { const data = buildLocauxTable(); const html = `<table class="stat-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>La durée du contrat</th><th>Fin contrat</th><th>Jours restants</th></tr></thead><tbody>${data.map(l => `<tr><td class="font-medium">${l.wilaya}</td><td class="font-medium">${l.agence}</td><td class="font-bold">${l.dureeContrat}</td><td>${l.finContrat}</td><td class="text-center">${l.restant}</td></tr>`).join('') || '<tr><td colspan="5" class="text-center py-6">Aucun local</td></tr>'}</tbody></table>`; document.getElementById('locauxWrapper').innerHTML = html; }
+
+        async function refreshAll() {
+            currentAgence = document.getElementById('agenceFilter').value;
+            currentWilaya = document.getElementById('wilayaFilter').value;
+            fromDate = document.getElementById('fromDate').value;
+            toDate = document.getElementById('toDate').value;
+            renderComptes();
+            renderExpedition();
+            renderPersonnel();
+            renderConges();
+            renderStopdesk();
+            renderLivreurs();
+            renderLocaux();
+            updateChart();
+        }
+
+        function populateFilters() {
+            let agencesSet = new Set();
+            (store.stopdeskRaw||[]).forEach(s=>{ let a=s['AGENCE']; if(a) agencesSet.add(a); });
+            (store.livreurRaw||[]).forEach(l=>{ let a=l['AGENCE']; if(a) agencesSet.add(a); });
+            (store.agentsRaw||[]).forEach(a=>{ let ag=a['AGENCE']; if(ag) agencesSet.add(ag); });
+            (store.comptesRaw||[]).forEach(c=>{ let ag=c['Agence']; if(ag) agencesSet.add(ag); });
+            (store.localRaw||[]).forEach(l=>{ let ag=l['AGENCE']; if(ag) agencesSet.add(ag); });
+            const agFilter = document.getElementById('agenceFilter');
+            agFilter.innerHTML = '<option value="ALL">🌐 Toutes agences</option>';
+            Array.from(agencesSet).sort().forEach(a=>{ let opt=new Option(a,a); agFilter.appendChild(opt); });
+        }
+
+        async function loadAllData() {
+            const loadingIds = ['comptesOuvertsWrapper','expeditionGlobaleWrapper','personnelWrapper','congeMaladieWrapper','agencesStopdeskWrapper','livreursWrapper','locauxWrapper'];
+            loadingIds.forEach(id=>{ document.getElementById(id).innerHTML='<div class="loading-spinner"></div>'; });
+            try {
+                const [compteRes, commercialRes, agencesRes, exp2025Res, exp2026Res, nvTop2026Res, nvTop2025Res, stopdeskRes, livreurRes, agentsRes, maladieRes, localRes] = await Promise.all([
+                    fetch(API.compte).then(r=>r.json()).catch(()=>[]),
+                    fetch(API.commercial).then(r=>r.json()).catch(()=>[]),
+                    fetch(API.agences).then(r=>r.json()).catch(()=>[]),
+                    fetch(API.exp2025).then(r=>r.json()).catch(()=>[]),
+                    fetch(API.exp2026).then(r=>r.json()).catch(()=>[]),
+                    fetch(API.nvTop2026).then(r=>r.json()).catch(()=>[]),
+                    fetch(API.nvTop2025).then(r=>r.json()).catch(()=>[]),
+                    fetch(API.stopdesk).then(r=>r.json()).catch(()=>[]),
+                    fetch(API.livreur).then(r=>r.json()).catch(()=>[]),
+                    fetch(API.agents).then(r=>r.json()).catch(()=>[]),
+                    fetch(API.maladie).then(r=>r.json()).catch(()=>[]),
+                    fetch(API.local).then(r=>r.json()).catch(()=>[])
+                ]);
+                store.comptesRaw=compteRes; store.commercialRaw=commercialRes; store.agencesRaw=agencesRes;
+                store.exp2025Raw=exp2025Res; store.exp2026Raw=exp2026Res; store.nvTop2026Raw=nvTop2026Res;
+                store.nvTop2025Raw=nvTop2025Res; store.stopdeskRaw=stopdeskRes; store.livreurRaw=livreurRes;
+                store.agentsRaw=agentsRes; store.maladieRaw=maladieRes; store.localRaw=localRes;
+                populateFilters();
+                refreshAll();
+            } catch(e){ console.error(e); document.getElementById('comptesOuvertsWrapper').innerHTML='<div class="text-red-500 p-4 text-center">Erreur chargement API</div>'; }
+        }
+
+        setDefaultDateRange();
+        flatpickr("#fromDate", { dateFormat: "Y-m-d", locale: "fr", onChange: () => refreshAll() });
+        flatpickr("#toDate", { dateFormat: "Y-m-d", locale: "fr", onChange: () => refreshAll() });
+        document.getElementById('agenceFilter').addEventListener('change', refreshAll);
+        document.getElementById('wilayaFilter').addEventListener('change', refreshAll);
+        loadAllData();
+    })();
+</script>
 </body>
 </html>
