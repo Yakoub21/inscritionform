@@ -16,14 +16,11 @@
         *{box-sizing:border-box}body{background:var(--bg);font-family:'DM Sans',system-ui,sans-serif;color:var(--fg);margin:0;min-height:100vh;overflow-x:hidden}
         body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle at 20% 20%,rgba(16,185,129,0.03) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(59,130,246,0.03) 0%,transparent 50%),linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);background-size:100% 100%,100% 100%,60px 60px,60px 60px;pointer-events:none;z-index:0}
         .main-c{position:relative;z-index:1}
-
         .header-glow{position:relative;background:linear-gradient(135deg,var(--bg-el) 0%,#0f1425 100%);border-bottom:1px solid var(--border);border-radius:16px}
         .header-glow::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0.4}
-
         .dash-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
         .dash-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent)}
         .dash-card:hover{border-color:rgba(255,255,255,0.1);background:var(--bg-card-h);transform:translateY(-1px);box-shadow:0 8px 32px rgba(0,0,0,0.3)}
-
         .kpi-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.3rem;position:relative;overflow:hidden;transition:all .3s ease;cursor:default}
         .kpi-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;border-radius:0 3px 3px 0}
         .kpi-card.k-emerald::before{background:var(--accent)}.kpi-card.k-blue::before{background:var(--info)}.kpi-card.k-amber::before{background:var(--warn)}.kpi-card.k-rose::before{background:var(--rose)}.kpi-card.k-purple::before{background:var(--purple)}.kpi-card.k-teal::before{background:var(--teal)}
@@ -31,12 +28,9 @@
         .kpi-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.85rem}
         .kpi-value{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;line-height:1.1}
         .kpi-label{font-size:.68rem;color:var(--fg-m);font-weight:500;text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
-
         .section-title{font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:600;color:var(--fg);display:flex;align-items:center;gap:.55rem;margin-bottom:.85rem}
         .section-title .iw{width:30px;height:30px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:.75rem}
         .section-title .sub{margin-left:auto;font-size:.68rem;color:var(--fg-d);font-weight:400}
-
-        /* Section divider */
         .section-divider{position:relative;display:flex;align-items:center;gap:1rem;margin:2rem 0 1.25rem;padding:0}
         .section-divider::before{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
         .section-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
@@ -44,13 +38,11 @@
         .section-divider-icon{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.85rem}
         .section-divider-text{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:700;letter-spacing:.02em}
         .section-divider-count{font-size:.7rem;font-weight:600;padding:.15rem .5rem;border-radius:12px}
-
         .filter-bar{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.4rem}
         .filter-select,.filter-input{background:var(--bg-el);border:1px solid var(--border);border-radius:10px;padding:.55rem .9rem;width:100%;color:var(--fg);font-size:.82rem;font-family:'DM Sans',sans-serif;transition:border-color .2s,box-shadow .2s;outline:none}
         .filter-select:focus,.filter-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s)}
         .filter-select option{background:var(--bg-card);color:var(--fg)}
         .filter-label{font-size:.68rem;font-weight:600;color:var(--fg-m);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.35rem;display:block}
-
         .table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);background:var(--bg-el)}
         .s-table{min-width:640px;width:100%;border-collapse:collapse;font-size:.78rem}
         .s-table thead{position:sticky;top:0;z-index:2}
@@ -71,8 +63,8 @@
         .loader-text{font-size:.72rem;color:var(--fg-d)}
         @keyframes spin{to{transform:rotate(360deg)}}
         .empty-state{text-align:center;padding:2rem 1rem;color:var(--fg-d);font-size:.82rem}.empty-state i{font-size:1.3rem;margin-bottom:.4rem;display:block;color:var(--fg-d)}
-        .chart-box{background:var(--bg-el);border-radius:10px;padding:.85rem;border:1px solid var(--border)}
-
+        .chart-box{background:var(--bg-el);border-radius:10px;padding:.65rem .75rem;border:1px solid var(--border)}
+        .chart-box-sm{background:var(--bg-el);border-radius:8px;padding:.5rem .65rem;border:1px solid var(--border)}
         .kpi-tooltip{position:fixed;z-index:9999;pointer-events:none;opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s;max-width:520px;width:max-content}
         .kpi-tooltip.show{opacity:1;transform:translateY(0);pointer-events:auto}
         .kpi-tooltip-inner{background:#1e2440;border:1px solid rgba(255,255,255,0.1);border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.05);overflow:hidden}
@@ -84,7 +76,6 @@
         .tt-type{font-weight:600;font-size:.62rem;text-transform:uppercase;letter-spacing:.04em;padding:.1rem .4rem;border-radius:6px;display:inline-block}
         .tt-name{font-weight:600;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tt-agence{color:var(--fg-m);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
         .tt-rest{font-family:'Space Grotesk',sans-serif;font-weight:600}.tt-empty{text-align:center;padding:1.5rem;color:var(--fg-d);font-size:.78rem}
-
         .flatpickr-calendar{background:var(--bg-card)!important;border:1px solid var(--border)!important;box-shadow:0 16px 48px rgba(0,0,0,0.4)!important;border-radius:12px!important}
         .flatpickr-months,.flatpickr-month{background:var(--bg-card)!important;color:var(--fg)!important;fill:var(--fg)!important}
         .flatpickr-current-month .flatpickr-monthDropdown-months{background:var(--bg-el)!important;color:var(--fg)!important}
@@ -110,7 +101,6 @@
 <div class="main-c p-4 md:p-6 lg:p-8">
 <div class="max-w-[1680px] mx-auto">
 
-    <!-- Header -->
     <header class="header-glow p-6 md:p-7 mb-6 fade-up">
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <div>
@@ -128,7 +118,6 @@
         </div>
     </header>
 
-    <!-- Filtres -->
     <div class="filter-bar mb-6 fade-up d1">
         <div class="flex items-center gap-2 mb-3"><i class="fas fa-sliders-h" style="color:var(--fg-d);font-size:.78rem"></i><span style="font-size:.72rem;font-weight:600;color:var(--fg-m);text-transform:uppercase;letter-spacing:.06em">Filtres</span></div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -139,7 +128,6 @@
         </div>
     </div>
 
-    <!-- KPIs -->
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-6">
         <div class="kpi-card k-emerald fade-up d1"><div class="flex items-center justify-between mb-2"><div class="kpi-icon" style="background:var(--accent-s);color:var(--accent)"><i class="fas fa-user-plus"></i></div></div><div class="kpi-value" id="kpiComptes" style="color:#fff">—</div><div class="kpi-label">Comptes ouverts</div></div>
         <div class="kpi-card k-blue fade-up d2"><div class="flex items-center justify-between mb-2"><div class="kpi-icon" style="background:var(--info-s);color:var(--info)"><i class="fas fa-check-circle"></i></div></div><div class="kpi-value" id="kpiActifs" style="color:#fff">—</div><div class="kpi-label">Comptes actifs</div></div>
@@ -149,48 +137,36 @@
         <div class="kpi-card k-rose fade-up d6" id="kpiExpiringCard" style="cursor:pointer"><div class="flex items-center justify-between mb-2"><div class="kpi-icon" style="background:var(--warn-s);color:var(--warn)"><i class="fas fa-hourglass-half"></i></div><i class="fas fa-chevron-down" style="font-size:.6rem;color:var(--fg-d)"></i></div><div class="kpi-value" id="kpiExpiring" style="color:var(--warn)">—</div><div class="kpi-label">Contrats &lt; 2 mois</div></div>
     </div>
 
-    <!-- Tooltip contrats -->
     <div class="kpi-tooltip" id="expiringTooltip"><div class="kpi-tooltip-inner"><div class="kpi-tooltip-head"><i class="fas fa-hourglass-half"></i> Contrats arrivant à échéance (&lt; 2 mois)</div><div class="kpi-tooltip-body" id="expiringTooltipBody"><div class="tt-empty">Chargement...</div></div></div></div>
 
-    <!-- ================================ -->
-    <!-- SECTION 1 : COMMERCIALE ACTIVE  -->
-    <!-- ================================ -->
+    <!-- SECTION 1 : COMMERCIALE ACTIVE -->
     <div class="section-divider fade-up d3">
-        <span class="section-divider::before"></span>
         <span class="section-divider-label">
             <span class="section-divider-icon" style="background:var(--info-s);color:var(--info)"><i class="fas fa-chart-pie"></i></span>
             <span class="section-divider-text" style="color:var(--fg)">Commerciale Active</span>
             <span class="section-divider-count" style="background:var(--info-s);color:var(--info)">7 modules</span>
         </span>
-        <span class="section-divider::after"></span>
     </div>
 
     <div class="space-y-5">
-        <!-- 1. Comptes -->
         <section class="dash-card p-5 md:p-6 fade-up d3"><div class="section-title"><span class="iw" style="background:var(--accent-s);color:var(--accent)"><i class="fas fa-user-plus"></i></span>Comptes ouverts & actifs<span class="sub">triés par nombre</span></div><div id="comptesOuvertsWrapper" class="table-wrap"><div class="loader-wrap"><div class="loader-ring"></div><span class="loader-text">Chargement...</span></div></div></section>
-
-        <!-- 2. Expédition globale -->
         <section class="dash-card p-5 md:p-6 fade-up d4"><div class="section-title"><span class="iw" style="background:var(--info-s);color:var(--info)"><i class="fas fa-boxes"></i></span>Expédition globale<span class="sub">triée par expédiés</span></div><div id="expeditionGlobaleWrapper" class="table-wrap"><div class="loader-wrap"><div class="loader-ring"></div><span class="loader-text">Chargement...</span></div></div></section>
 
-        <!-- 3. Tendance expédition -->
-        <section class="dash-card p-5 md:p-6 fade-up d5"><div class="section-title"><span class="iw" style="background:var(--info-s);color:var(--info)"><i class="fas fa-chart-line"></i></span>Tendance expédition<span class="sub">par wilaya</span></div><div class="chart-box"><canvas id="expLineChart" height="160"></canvas></div></section>
+        <!-- Tendance expédition — compact -->
+        <section class="dash-card p-4 md:p-5 fade-up d5"><div class="section-title" style="margin-bottom:.6rem"><span class="iw" style="background:var(--info-s);color:var(--info)"><i class="fas fa-chart-line"></i></span>Tendance expédition<span class="sub">par wilaya</span></div><div class="chart-box-sm"><canvas id="expLineChart" height="70"></canvas></div></section>
 
-        <!-- 4. Expédiés vs livrés bar -->
-        <section class="dash-card p-5 md:p-6 fade-up d5"><div class="section-title"><span class="iw" style="background:var(--info-s);color:var(--info)"><i class="fas fa-chart-bar"></i></span>Expédiés vs livrés<span class="sub">par mois</span></div><div class="chart-box"><canvas id="expChart" height="80"></canvas></div></section>
+        <!-- Expédiés vs livrés — compact -->
+        <section class="dash-card p-4 md:p-5 fade-up d5"><div class="section-title" style="margin-bottom:.6rem"><span class="iw" style="background:var(--info-s);color:var(--info)"><i class="fas fa-chart-bar"></i></span>Expédiés vs livrés<span class="sub">par mois</span></div><div class="chart-box-sm"><canvas id="expChart" height="65"></canvas></div></section>
 
-        <!-- 5. Stopdesk -->
         <section class="dash-card p-5 md:p-6 fade-up d6"><div class="section-title"><span class="iw" style="background:var(--purple-s);color:var(--purple)"><i class="fas fa-building"></i></span>Stopdesk &mdash; Performance colis</div><div id="agencesStopdeskWrapper" class="table-wrap"><div class="loader-wrap"><div class="loader-ring"></div><span class="loader-text">Chargement...</span></div></div></section>
 
-        <!-- 6. Tendance colis reçus -->
-        <section class="dash-card p-5 md:p-6 fade-up d7"><div class="section-title"><span class="iw" style="background:var(--teal-s);color:var(--teal)"><i class="fas fa-chart-line"></i></span>Tendance colis reçus<span class="sub">par wilaya</span></div><div class="chart-box"><canvas id="recuLineChart" height="160"></canvas></div></section>
+        <!-- Tendance colis reçus — compact -->
+        <section class="dash-card p-4 md:p-5 fade-up d7"><div class="section-title" style="margin-bottom:.6rem"><span class="iw" style="background:var(--teal-s);color:var(--teal)"><i class="fas fa-chart-line"></i></span>Tendance colis reçus<span class="sub">par wilaya</span></div><div class="chart-box-sm"><canvas id="recuLineChart" height="70"></canvas></div></section>
 
-        <!-- 7. Livreurs -->
         <section class="dash-card p-5 md:p-6 fade-up d8"><div class="section-title"><span class="iw" style="background:var(--teal-s);color:var(--teal)"><i class="fas fa-truck"></i></span>Livreurs &mdash; Activité individuelle<span class="sub">triés par taux</span></div><div id="livreursWrapper" class="table-wrap"><div class="loader-wrap"><div class="loader-ring"></div><span class="loader-text">Chargement...</span></div></div></section>
     </div>
 
-    <!-- ================================ -->
-    <!-- SECTION 2 : PERSONNEL INFO      -->
-    <!-- ================================ -->
+    <!-- SECTION 2 : PERSONNEL INFO -->
     <div class="section-divider fade-up d9">
         <span class="section-divider-label">
             <span class="section-divider-icon" style="background:var(--warn-s);color:var(--warn)"><i class="fas fa-id-badge"></i></span>
@@ -200,13 +176,8 @@
     </div>
 
     <div class="space-y-5">
-        <!-- 8. Personnel -->
         <section class="dash-card p-5 md:p-6 fade-up d9"><div class="section-title"><span class="iw" style="background:var(--warn-s);color:var(--warn)"><i class="fas fa-users"></i></span>Personnel &mdash; Contrats & expiration</div><div id="personnelWrapper" class="table-wrap"><div class="loader-wrap"><div class="loader-ring"></div><span class="loader-text">Chargement...</span></div></div></section>
-
-        <!-- 9. Congés -->
         <section class="dash-card p-5 md:p-6 fade-up d10"><div class="section-title"><span class="iw" style="background:var(--rose-s);color:var(--rose)"><i class="fas fa-notes-medical"></i></span>Congés & arrêts maladie<span class="sub">jours restants annuels</span></div><div id="congeMaladieWrapper" class="table-wrap"><div class="loader-wrap"><div class="loader-ring"></div><span class="loader-text">Chargement...</span></div></div></section>
-
-        <!-- 10. Locaux -->
         <section class="dash-card p-5 md:p-6 fade-up d10"><div class="section-title"><span class="iw" style="background:var(--purple-s);color:var(--purple)"><i class="fas fa-home"></i></span>Locaux &mdash; Durée & fin de contrat</div><div id="locauxWrapper" class="table-wrap"><div class="loader-wrap"><div class="loader-ring"></div><span class="loader-text">Chargement...</span></div></div></section>
     </div>
 
@@ -227,50 +198,43 @@
     function parseDate(s){if(!s)return null;if(typeof s==='string'&&s.includes('/')){let p=s.split('/');if(p.length===3)return new Date(p[2],p[1]-1,p[0])}return new Date(s)}
     function fmtDate(d){return d.toISOString().slice(0,10)}
     function daysDiff(a,b){return Math.ceil((b-a)/(864e5))}
-
     function setDefaultRange(){const t=new Date(),f=new Date(t.getFullYear(),0,1);fDate=fmtDate(f);tDate=fmtDate(t);document.getElementById('fromDate').value=fDate;document.getElementById('toDate').value=tDate}
     function getYearMonths(){if(!fDate||!tDate)return[];let s=new Date(fDate),e=new Date(tDate),r=[],c=new Date(s.getFullYear(),s.getMonth(),1);while(c<=e){r.push({year:c.getFullYear(),month:c.getMonth()+1});c.setMonth(c.getMonth()+1)}return r}
-
     function formatDur(d){if(d<=0)return'<span class="status-expired">Expiré</span>';let m=Math.floor(d/30),rd=d%30;if(m===0)return'<span class="status-active">'+rd+' j</span>';if(m<2)return'<span class="status-warn">'+m+' m '+rd+' j</span>';return'<span class="status-active">'+m+' m '+rd+' j</span>'}
     function tauxBadge(t){let v=parseFloat(t),c='badge-neutral';if(v>=70)c='badge-emerald';else if(v>=50)c='badge-blue';else if(v>=30)c='badge-amber';else if(v>0)c='badge-rose';return'<span class="badge '+c+'">'+t+'%</span>'}
 
     function buildComptes(){let comp=store.comptesRaw||[];if(!comp.length)return[];let am=new Map();(store.agencesRaw||[]).forEach(a=>{let n=a['agence s']||a['agence f'],w=a['wilaya'];if(n&&w)am.set(n.trim().toLowerCase().replace(/[\[\]()]/g,''),{name:n,wil:w})});let fc=comp;if(fDate&&tDate){let from=new Date(fDate),to=new Date(tDate);fc=comp.filter(r=>{let d=r['DATE'];if(!d)return false;let o=parseDate(d);return o&&o>=from&&o<=to})}let g=new Map();for(let r of fc){let ra=(r['Agence']||'').trim(),wr=(r['WILAYA']||'').trim(),nm=ra.toLowerCase().replace(/[\[\]()]/g,''),mt=am.get(nm),fw=null,fa=ra;if(mt){fw=mt.wil;fa=mt.name}else if(wr&&TW.includes(wr)){fw=wr}else continue;if(!fw||!TW.includes(fw))continue;let ac=(r['ACTIF/INACTIF']||'').toUpperCase()==='ACTIF',k=fw+'|'+fa;if(!g.has(k))g.set(k,{wil:fw,ag:fa,tot:0,act:0});let e=g.get(k);e.tot++;if(ac)e.act++}let res=Array.from(g.values()).map(v=>({...v,taux:v.tot>0?(v.act/v.tot*100).toFixed(1):0}));res=res.filter(r=>(curAg==='ALL'||r.ag===curAg)&&(curWil==='ALL'||r.wil===curWil));res.sort((a,b)=>b.tot-a.tot);return res}
-
     function buildExpedition(){let ym=getYearMonths();if(!ym.length)return[];let ds={2025:store.exp2025Raw||[],2026:store.exp2026Raw||[]};let m=new Map();ym.forEach(({year,month})=>{(ds[year]||[]).forEach(r=>{let w=r['Wilaya']||'';if(!TW.includes(w))return;let a=r['Agence']||'Indéfini',k=w+'|'+a;if(!m.has(k))m.set(k,{wil:w,ag:a,exp:0,liv:0});let e=m.get(k);e.exp+=parseInt(r['EXP'+month])||0;e.liv+=parseInt(r['LIV'+month])||0})});let res=Array.from(m.values()).map(r=>({...r,taux:r.exp>0?((r.liv/r.exp)*100).toFixed(1):0}));res=res.filter(r=>(curAg==='ALL'||r.ag===curAg)&&(curWil==='ALL'||r.wil===curWil));res.sort((a,b)=>b.exp-a.exp);return res}
-
     function buildPersonnel(){let ag=store.agentsRaw||[];let f=ag.filter(a=>TW.includes((a['WILAYA']||'')));if(curAg!=='ALL')f=f.filter(a=>(a['AGENCE']||'')===curAg);if(curWil!=='ALL')f=f.filter(a=>(a['WILAYA']||'')===curWil);let today=new Date();return f.map(a=>{let fs=a['DATE FIN CONTRA']||'',rh='<span class="status-neutral">N/D</span>',exp=false,dl=null;if(fs){let fd=parseDate(fs);if(fd&&!isNaN(fd)){dl=daysDiff(today,fd);rh=formatDur(dl);if(dl<=0)exp=true}else rh='<span class="status-neutral">Invalide</span>'}return{wil:a['WILAYA']||'-',ag:a['AGENCE']||'-',name:a['AGENT NAME']||'-',pro:a['PRO']||'-',type:a['TYPE CONTRA']||'CDD',deb:a['DATE START']||'N/C',fin:fs||'N/C',rh,exp,dl}})}
-
     function buildExpiringList(){let list=[],today=new Date();(store.agentsRaw||[]).forEach(a=>{let w=a['WILAYA']||'';if(!TW.includes(w))return;if(curAg!=='ALL'&&(a['AGENCE']||'')!==curAg)return;if(curWil!=='ALL'&&w!==curWil)return;let fs=a['DATE FIN CONTRA']||'';if(!fs)return;let fd=parseDate(fs);if(!fd||isNaN(fd))return;let d=daysDiff(today,fd);if(d<=0||d<60)list.push({type:'Agent',name:a['AGENT NAME']||'-',ag:a['AGENCE']||'-',wil:w,fin:fs,days:d})});(store.localRaw||[]).forEach(l=>{let w=l['WILAYA']||'';if(!TW.includes(w))return;if(curAg!=='ALL'&&(l['AGENCE']||'')!==curAg)return;if(curWil!=='ALL'&&w!==curWil)return;let fs=l['FIN CONTRAT']||'';if(!fs)return;let fd=parseDate(fs);if(!fd||isNaN(fd))return;let d=daysDiff(today,fd);if(d<=0||d<60)list.push({type:'Local',name:'Local '+l['AGENCE'],ag:l['AGENCE']||'-',wil:w,fin:fs,days:d})});list.sort((a,b)=>a.days-b.days);return list}
-
     function compRemain(ss,t){let s=parseDate(ss);if(!s||isNaN(s))return 0;let today=new Date(),tot=0,fj=new Date(s.getFullYear(),6,1);if(s>=fj)fj=new Date(s.getFullYear()+1,6,1);tot+=(fj.getFullYear()-s.getFullYear())*12+(fj.getMonth()-s.getMonth())*2.5;let cs=fj;while(cs<today){if(new Date(cs.getFullYear()+1,5,30)<today){tot+=30;cs=new Date(cs.getFullYear()+1,6,1)}else break}return Math.floor(Math.max(0,tot-t))}
     function buildConges(){let rows=store.maladieRaw||[],ar=store.agentsRaw||[];let asm=new Map();ar.forEach(a=>{let n=a['AGENT NAME'],s=a['DATE START'];if(n&&s)asm.set(n,s)});let tdm=new Map();rows.forEach(r=>{if((r['TYPE']||'').toLowerCase()!=='congé')return;let ag=r['AGENT NAME'];if(!ag)return;let d=r['ST DATE'],f=r['FN DATE'];if(d&&f){let sd=parseDate(d),ed=parseDate(f);if(sd&&ed&&!isNaN(sd)&&!isNaN(ed))tdm.set(ag,(tdm.get(ag)||0)+daysDiff(sd,ed)+1)}});let rm=new Map();for(let[a,s]of asm.entries())rm.set(a,compRemain(s,tdm.get(a)||0));let fr=rows.filter(r=>{let w=r['WILAYA']||'';if(!TW.includes(w))return false;if(curAg!=='ALL'&&(r['AGENCE']||'')!==curAg)return false;if(curWil!=='ALL'&&w!==curWil)return false;return true});return fr.map(r=>{let ag=r['AGENT NAME']||'',tp=(r['TYPE']||'').toLowerCase(),jr='-';if(tp==='congé'){let rem=rm.get(ag);if(rem!==undefined)jr=rem+' j'}let tb='badge-neutral';if(tp==='congé')tb='badge-blue';else if(tp==='maladie'||tp==='arrêt maladie')tb='badge-rose';return{wil:r['WILAYA']||'',ag:r['AGENCE']||'',name:ag,pro:r['PRO']||'',type:r['TYPE']||'',tb,deb:r['ST DATE']||'',fin:r['FN DATE']||'',jr}})}
-
     function buildStopdesk(){let data=store.stopdeskRaw||[],ym=getYearMonths();if(!ym.length)return[];let m=new Map();data.forEach(r=>{let ag=r['AGENCE']||'',tp=r['TYPE']||'';if(!ag||!tp)return;let w=r['WILAYA']||'';if(!TW.includes(w)&&w!=='')return;let tr=0,tl=0;ym.forEach(({month})=>{tr+=parseInt(r['COLIS RECU'+month])||0;tl+=parseInt(r['COLIS LIVRE'+month])||0});let k=ag+'|'+tp;if(!m.has(k))m.set(k,{ag,tp,wil:w,tr:0,tl:0});let e=m.get(k);e.tr+=tr;e.tl+=tl});let res=Array.from(m.values()).map(e=>({...e,taux:e.tr>0?((e.tl/e.tr)*100).toFixed(1):0}));res=res.filter(r=>(curAg==='ALL'||r.ag===curAg)&&(curWil==='ALL'||r.wil===curWil));res.sort((a,b)=>a.wil.localeCompare(b.wil)||a.ag.localeCompare(b.ag));return res}
-
     function buildLivreurs(){let data=store.livreurRaw||[],ym=getYearMonths();if(!ym.length)return[];let res=[];data.forEach(r=>{let w=r['WILAYA']||'';if(!TW.includes(w))return;let ag=r['AGENCE']||'',nm=r['LIVREUR']||'',rc=0,lv=0;ym.forEach(({month})=>{rc+=parseInt(r['COLIS RECU'+month])||0;lv+=parseInt(r['COLIS LIVRE'+month])||0});let tx=0;if(rc+lv>0)tx=(lv*100)/(rc+lv);res.push({wil:w,ag,nm,rc,lv,taux:tx.toFixed(1)})});res=res.filter(r=>curAg==='ALL'||r.ag===curAg);res.sort((a,b)=>parseFloat(b.taux)-parseFloat(a.taux));return res}
-
     function buildLocaux(){let data=store.localRaw||[];if(!data||!data.length)return[];let f=data.filter(r=>{let w=r['WILAYA']||'';if(!TW.includes(w))return false;if(curAg!=='ALL'&&(r['AGENCE']||'')!==curAg)return false;if(curWil!=='ALL'&&w!==curWil)return false;return true});let today=new Date();return f.map(r=>{let dur=r['La durée du contrat']||'-',fc=r['FIN CONTRAT']||'',rs='-';if(fc){let fd=parseDate(fc);if(fd&&!isNaN(fd)){let dl=daysDiff(today,fd);if(dl>0){let m=Math.floor(dl/30),d=dl%30;rs=m>0?m+' m '+d+' j':d+' j'}else rs='<span class="status-expired">Expiré</span>'}}return{wil:r['WILAYA']||'',ag:r['AGENCE']||'',dur,fc:fc||'N/C',rs}})}
 
     function updateKPIs(){let c=buildComptes(),e=buildExpedition(),p=buildPersonnel(),ex=buildExpiringList();document.getElementById('kpiComptes').textContent=fmtNum(c.reduce((s,r)=>s+r.tot,0));document.getElementById('kpiActifs').textContent=fmtNum(c.reduce((s,r)=>s+r.act,0));document.getElementById('kpiExp').textContent=fmtNum(e.reduce((s,r)=>s+r.exp,0));document.getElementById('kpiLiv').textContent=fmtNum(e.reduce((s,r)=>s+r.liv,0));document.getElementById('kpiAgents').textContent=fmtNum(p.length);document.getElementById('kpiExpiring').textContent=fmtNum(ex.filter(x=>x.days>0&&x.days<60).length);updateExpiringTooltip(ex)}
-
     function updateExpiringTooltip(list){let body=document.getElementById('expiringTooltipBody');if(!list.length){body.innerHTML='<div class="tt-empty"><i class="fas fa-check-circle" style="color:var(--accent);margin-right:.4rem"></i>Aucun contrat à risque</div>';return}let html='';list.forEach(item=>{let tc=item.type==='Agent'?'var(--info)':'var(--purple)',tb=item.type==='Agent'?'var(--info-s)':'var(--purple-s)',rc=item.days<=0?'var(--danger)':item.days<30?'var(--danger)':'var(--warn)',rt=item.days<=0?'Expiré':item.days+' j';html+='<div class="tt-row"><span class="tt-type" style="color:'+tc+';background:'+tb+'">'+item.type+'</span><span class="tt-name">'+item.name+'</span><span class="tt-agence">'+item.ag+'</span><span class="tt-rest" style="color:'+rc+'">'+rt+'</span></div>'});body.innerHTML=html}
     (function(){let card=document.getElementById('kpiExpiringCard'),tip=document.getElementById('expiringTooltip'),st=null,ht=null;function show(){clearTimeout(ht);let r=card.getBoundingClientRect(),tw=520,l=r.left+r.width/2-tw/2;if(l<8)l=8;if(l+tw>window.innerWidth-8)l=window.innerWidth-tw-8;let t=r.bottom+10;if(t+320>window.innerHeight)t=r.top-330;tip.style.left=l+'px';tip.style.top=t+'px';tip.style.width=tw+'px';tip.classList.add('show')}function hide(){ht=setTimeout(()=>tip.classList.remove('show'),200)}card.addEventListener('mouseenter',()=>{st=setTimeout(show,150)});card.addEventListener('mouseleave',()=>{clearTimeout(st);hide()});tip.addEventListener('mouseenter',()=>clearTimeout(ht));tip.addEventListener('mouseleave',hide)})();
 
     function getMonthlyExpPerWilaya(){let ym=getYearMonths();if(!ym.length)return{};let ds={2025:store.exp2025Raw||[],2026:store.exp2026Raw||[]};let data={};TW.forEach(w=>{data[w]={exp:new Array(12).fill(0),liv:new Array(12).fill(0)}});ym.forEach(({year,month})=>{(ds[year]||[]).forEach(r=>{let w=r['Wilaya']||'';if(!TW.includes(w))return;if(curAg!=='ALL'&&r['Agence']!==curAg)return;if(curWil!=='ALL'&&w!==curWil)return;data[w].exp[month-1]+=parseInt(r['EXP'+month])||0;data[w].liv[month-1]+=parseInt(r['LIV'+month])||0})});return data}
     function getMonthlyRecuPerWilaya(){let ym=getYearMonths();if(!ym.length)return{};let data={};TW.forEach(w=>{data[w]=new Array(12).fill(0)});(store.stopdeskRaw||[]).forEach(r=>{let w=r['WILAYA']||'';if(!TW.includes(w)&&w!=='')return;if(curAg!=='ALL'&&r['AGENCE']!==curAg)return;if(curWil!=='ALL'&&w!==curWil)return;ym.forEach(({month})=>{data[w][month-1]+=parseInt(r['COLIS RECU'+month])||0})});(store.livreurRaw||[]).forEach(r=>{let w=r['WILAYA']||'';if(!TW.includes(w))return;if(curAg!=='ALL'&&r['AGENCE']!==curAg)return;if(curWil!=='ALL'&&w!==curWil)return;ym.forEach(({month})=>{data[w][month-1]+=parseInt(r['COLIS RECU'+month])||0})});return data}
 
-    let baseOpts={responsive:true,maintainAspectRatio:true,interaction:{intersect:false,mode:'index'},plugins:{legend:{position:'top',align:'end',labels:{color:'#7a8299',font:{family:"'DM Sans',sans-serif",size:10,weight:500},boxWidth:10,boxHeight:3,borderRadius:2,useBorderRadius:true,padding:10}},tooltip:{backgroundColor:'#1e2440',titleColor:'#e8ecf4',bodyColor:'#e8ecf4',borderColor:'rgba(255,255,255,0.08)',borderWidth:1,cornerRadius:8,padding:10,titleFont:{family:"'Space Grotesk',sans-serif",weight:600,size:11},bodyFont:{family:"'DM Sans',sans-serif",size:10},callbacks:{label:function(c){return ' '+c.dataset.label+' : '+fmtNum(c.parsed.y)}}}},scales:{x:{grid:{color:'rgba(255,255,255,0.03)',drawBorder:false},ticks:{color:'#4a5168',font:{family:"'DM Sans',sans-serif",size:9}}},y:{grid:{color:'rgba(255,255,255,0.03)',drawBorder:false},ticks:{color:'#4a5168',font:{family:"'DM Sans',sans-serif",size:9},callback:function(v){return fmtNum(v)}}}}};
+    // Options compactes pour line charts
+    let compactOpts={responsive:true,maintainAspectRatio:true,interaction:{intersect:false,mode:'index'},plugins:{legend:{position:'top',align:'end',labels:{color:'#7a8299',font:{family:"'DM Sans',sans-serif",size:9,weight:500},boxWidth:8,boxHeight:2,borderRadius:2,useBorderRadius:true,padding:8}},tooltip:{backgroundColor:'#1e2440',titleColor:'#e8ecf4',bodyColor:'#e8ecf4',borderColor:'rgba(255,255,255,0.08)',borderWidth:1,cornerRadius:6,padding:8,titleFont:{family:"'Space Grotesk',sans-serif",weight:600,size:10},bodyFont:{family:"'DM Sans',sans-serif",size:9},callbacks:{label:function(c){return ' '+c.dataset.label+' : '+fmtNum(c.parsed.y)}}}},scales:{x:{grid:{color:'rgba(255,255,255,0.02)',drawBorder:false},ticks:{color:'#4a5168',font:{family:"'DM Sans',sans-serif",size:8},maxRotation:0}},y:{grid:{color:'rgba(255,255,255,0.02)',drawBorder:false},ticks:{color:'#4a5168',font:{family:"'DM Sans',sans-serif",size:8},callback:function(v){return fmtNum(v)},maxTicksLimit:5}}}};
+    // Options pour bar chart
+    let barOpts={responsive:true,maintainAspectRatio:true,interaction:{intersect:false,mode:'index'},plugins:{legend:{position:'top',align:'end',labels:{color:'#7a8299',font:{family:"'DM Sans',sans-serif",size:9,weight:500},boxWidth:8,boxHeight:8,borderRadius:2,useBorderRadius:true,padding:8}},tooltip:{backgroundColor:'#1e2440',titleColor:'#e8ecf4',bodyColor:'#e8ecf4',borderColor:'rgba(255,255,255,0.08)',borderWidth:1,cornerRadius:6,padding:8,titleFont:{family:"'Space Grotesk',sans-serif",weight:600,size:10},bodyFont:{family:"'DM Sans',sans-serif",size:9},callbacks:{label:function(c){return ' '+c.dataset.label+' : '+fmtNum(c.parsed.y)}}}},scales:{x:{grid:{color:'rgba(255,255,255,0.02)',drawBorder:false},ticks:{color:'#4a5168',font:{family:"'DM Sans',sans-serif",size:8},maxRotation:0}},y:{grid:{color:'rgba(255,255,255,0.02)',drawBorder:false},ticks:{color:'#4a5168',font:{family:"'DM Sans',sans-serif",size:8},callback:function(v){return fmtNum(v)},maxTicksLimit:5}}}};
 
     function updateCharts(){
         let labels=['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'];
         let ed=getMonthlyExpPerWilaya(),rd=getMonthlyRecuPerWilaya();
         let totExp=new Array(12).fill(0),totLiv=new Array(12).fill(0);TW.forEach(w=>{for(let i=0;i<12;i++){totExp[i]+=ed[w].exp[i];totLiv[i]+=ed[w].liv[i]}});
         if(chartBar)chartBar.destroy();
-        chartBar=new Chart(document.getElementById('expChart').getContext('2d'),{type:'bar',data:{labels,datasets:[{label:'Expédiés',data:totExp,backgroundColor:'rgba(59,130,246,0.6)',hoverBackgroundColor:'rgba(59,130,246,0.85)',borderRadius:4,borderSkipped:false,barPercentage:.6,categoryPercentage:.55},{label:'Livrés',data:totLiv,backgroundColor:'rgba(16,185,129,0.6)',hoverBackgroundColor:'rgba(16,185,129,0.85)',borderRadius:4,borderSkipped:false,barPercentage:.6,categoryPercentage:.55}]},options:{...baseOpts,plugins:{...baseOpts.plugins,legend:{...baseOpts.plugins.legend,labels:{...baseOpts.plugins.legend.labels,font:{family:"'DM Sans',sans-serif",size:9,weight:500},boxWidth:8,boxHeight:8}}}}});
-        let expDS=[];TW.forEach(w=>{if(curWil!=='ALL'&&w!==curWil)return;expDS.push({label:w+' (Exp)',data:ed[w].exp,borderColor:WC[w],backgroundColor:'transparent',tension:.4,pointRadius:2,pointHoverRadius:5,pointBackgroundColor:WC[w],pointBorderColor:'#181d32',pointBorderWidth:2,borderWidth:2.5,borderDash:[]});expDS.push({label:w+' (Liv)',data:ed[w].liv,borderColor:WC[w],backgroundColor:WCS[w],tension:.4,pointRadius:1.5,pointHoverRadius:4,pointBackgroundColor:WC[w],pointBorderColor:'#181d32',pointBorderWidth:1.5,borderWidth:1.8,borderDash:[5,3],fill:true})});
-        if(chartExpLine)chartExpLine.destroy();chartExpLine=new Chart(document.getElementById('expLineChart').getContext('2d'),{type:'line',data:{labels,datasets:expDS},options:baseOpts});
-        let recuDS=[];TW.forEach(w=>{if(curWil!=='ALL'&&w!==curWil)return;recuDS.push({label:w,data:rd[w],borderColor:WC[w],backgroundColor:WCS[w],fill:true,tension:.4,pointRadius:2,pointHoverRadius:5,pointBackgroundColor:WC[w],pointBorderColor:'#181d32',pointBorderWidth:2,borderWidth:2.5})});
-        if(chartRecuLine)chartRecuLine.destroy();chartRecuLine=new Chart(document.getElementById('recuLineChart').getContext('2d'),{type:'line',data:{labels,datasets:recuDS},options:baseOpts});
+        chartBar=new Chart(document.getElementById('expChart').getContext('2d'),{type:'bar',data:{labels,datasets:[{label:'Expédiés',data:totExp,backgroundColor:'rgba(59,130,246,0.55)',hoverBackgroundColor:'rgba(59,130,246,0.8)',borderRadius:3,borderSkipped:false,barPercentage:.55,categoryPercentage:.5},{label:'Livrés',data:totLiv,backgroundColor:'rgba(16,185,129,0.55)',hoverBackgroundColor:'rgba(16,185,129,0.8)',borderRadius:3,borderSkipped:false,barPercentage:.55,categoryPercentage:.5}]},options:barOpts});
+        let expDS=[];TW.forEach(w=>{if(curWil!=='ALL'&&w!==curWil)return;expDS.push({label:w+' Exp',data:ed[w].exp,borderColor:WC[w],backgroundColor:'transparent',tension:.4,pointRadius:1.5,pointHoverRadius:4,pointBackgroundColor:WC[w],pointBorderColor:'#181d32',pointBorderWidth:1.5,borderWidth:2,borderDash:[]});expDS.push({label:w+' Liv',data:ed[w].liv,borderColor:WC[w],backgroundColor:WCS[w],tension:.4,pointRadius:1,pointHoverRadius:3,pointBackgroundColor:WC[w],pointBorderColor:'#181d32',pointBorderWidth:1,borderWidth:1.5,borderDash:[4,3],fill:true})});
+        if(chartExpLine)chartExpLine.destroy();chartExpLine=new Chart(document.getElementById('expLineChart').getContext('2d'),{type:'line',data:{labels,datasets:expDS},options:compactOpts});
+        let recuDS=[];TW.forEach(w=>{if(curWil!=='ALL'&&w!==curWil)return;recuDS.push({label:w,data:rd[w],borderColor:WC[w],backgroundColor:WCS[w],fill:true,tension:.4,pointRadius:1.5,pointHoverRadius:4,pointBackgroundColor:WC[w],pointBorderColor:'#181d32',pointBorderWidth:1.5,borderWidth:2})});
+        if(chartRecuLine)chartRecuLine.destroy();chartRecuLine=new Chart(document.getElementById('recuLineChart').getContext('2d'),{type:'line',data:{labels,datasets:recuDS},options:compactOpts});
     }
 
     function emptyRow(c,i,m){return'<tr><td colspan="'+c+'"><div class="empty-state"><i class="fas fa-'+i+'"></i>'+m+'</div></td></tr>'}
@@ -283,9 +247,7 @@
     function renderLocaux(){let d=buildLocaux();document.getElementById('locauxWrapper').innerHTML='<table class="s-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Durée</th><th>Fin contrat</th><th>Restant</th></tr></thead><tbody>'+(d.map(l=>'<tr><td class="td-muted">'+l.wil+'</td><td class="agent-name">'+l.ag+'</td><td>'+l.dur+'</td><td class="td-muted">'+l.fc+'</td><td>'+l.rs+'</td></tr>').join('')||emptyRow(5,'home','Aucun local'))+'</tbody></table>'}
 
     function refreshAll(){curAg=document.getElementById('agenceFilter').value;curWil=document.getElementById('wilayaFilter').value;fDate=document.getElementById('fromDate').value;tDate=document.getElementById('toDate').value;updateKPIs();renderComptes();renderExpedition();renderPersonnel();renderConges();renderStopdesk();renderLivreurs();renderLocaux();updateCharts()}
-
     function populateFilters(){let s=new Set();['stopdeskRaw','livreurRaw','agentsRaw','comptesRaw','localRaw'].forEach(k=>{(store[k]||[]).forEach(r=>{let a=r['AGENCE']||r['Agence'];if(a)s.add(a)})});let sel=document.getElementById('agenceFilter');sel.innerHTML='<option value="ALL">Toutes les agences</option>';Array.from(s).sort().forEach(a=>sel.appendChild(new Option(a,a)))}
-
     async function loadAll(){let ids=['comptesOuvertsWrapper','expeditionGlobaleWrapper','personnelWrapper','congeMaladieWrapper','agencesStopdeskWrapper','livreursWrapper','locauxWrapper'];ids.forEach(id=>{document.getElementById(id).innerHTML='<div class="loader-wrap"><div class="loader-ring"></div><span class="loader-text">Chargement...</span></div>'});try{let ks=['compte','commercial','agences','exp2025','exp2026','nvTop2026','nvTop2025','stopdesk','livreur','agents','maladie','local'],sks=['comptesRaw','commercialRaw','agencesRaw','exp2025Raw','exp2026Raw','nvTop2026Raw','nvTop2025Raw','stopdeskRaw','livreurRaw','agentsRaw','maladieRaw','localRaw'];let res=await Promise.all(ks.map(k=>fetch(API[k]).then(r=>r.json()).catch(()=>[])));res.forEach((r,i)=>{store[sks[i]]=r});populateFilters();refreshAll()}catch(e){console.error(e);ids.forEach(id=>{document.getElementById(id).innerHTML='<div class="empty-state" style="color:var(--danger)"><i class="fas fa-exclamation-circle"></i>Erreur de chargement</div>'})}}
 
     setDefaultRange();
