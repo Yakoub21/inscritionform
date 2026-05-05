@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800;9..40,900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ====== VARIABLES & RESET (identique au dashboard original) ====== */
+        /* ====== VARIABLES & RESET ====== */
         :root{--bg:#0c0f1a;--bg-el:#131729;--bg-card:#181d32;--bg-card-h:#1e2440;--border:rgba(255,255,255,0.06);--border-accent:rgba(16,185,129,0.2);--fg:#e8ecf4;--fg-m:#7a8299;--fg-d:#4a5168;--accent:#10b981;--accent-s:rgba(16,185,129,0.12);--danger:#ef4444;--danger-s:rgba(239,68,68,0.12);--warn:#f59e0b;--warn-s:rgba(245,158,11,0.12);--info:#3b82f6;--info-s:rgba(59,130,246,0.12);--purple:#a78bfa;--purple-s:rgba(167,139,250,0.12);--teal:#2dd4bf;--teal-s:rgba(45,212,191,0.12);--rose:#fb7185;--rose-s:rgba(251,113,133,0.12)}
         *{box-sizing:border-box}body{background:var(--bg);font-family:'DM Sans',system-ui,sans-serif;color:var(--fg);margin:0;min-height:100vh;overflow-x:hidden;transition:background .3s,color .3s}
         body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle at 20% 20%,rgba(16,185,129,0.03) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(59,130,246,0.03) 0%,transparent 50%),linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);background-size:100% 100%,100% 100%,60px 60px,60px 60px;pointer-events:none;z-index:0;transition:opacity .3s}
@@ -48,7 +48,7 @@
         .filter-select option{background:var(--bg-card);color:var(--fg)}
         .filter-label{font-size:.68rem;font-weight:600;color:var(--fg-m);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.35rem;display:block}
         .table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);background:var(--bg-el);transition:background .3s}
-        .s-table{min-width:640px;width:100%;border-collapse:collapse;font-size:.78rem}
+        .s-table{min-width:1000px;width:100%;border-collapse:collapse;font-size:.78rem}
         .s-table thead{position:sticky;top:0;z-index:2}
         .s-table th{background:var(--bg-card);font-weight:600;color:var(--fg-m);border-bottom:1px solid var(--border);padding:.65rem .6rem;font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;text-align:left;transition:background .3s,color .3s}
         .s-table th:first-child{padding-left:.9rem}
@@ -128,7 +128,8 @@
         .d1{animation-delay:.05s}.d2{animation-delay:.1s}.d3{animation-delay:.15s}.d4{animation-delay:.2s}.d5{animation-delay:.25s}.d6{animation-delay:.3s}.d7{animation-delay:.35s}.d8{animation-delay:.4s}.d9{animation-delay:.45s}.d10{animation-delay:.5s}
         body.light-mode{--bg:#f1f5f9;--bg-el:#ffffff;--bg-card:#ffffff;--bg-card-h:#f8fafc;--border:rgba(0,0,0,0.07);--border-accent:rgba(5,150,105,0.25);--fg:#111827;--fg-m:#6b7280;--fg-d:#9ca3af;--accent:#059669;--accent-s:rgba(5,150,105,0.08);--danger:#dc2626;--danger-s:rgba(220,38,38,0.08);--warn:#d97706;--warn-s:rgba(217,119,6,0.08);--info:#2563eb;--info-s:rgba(37,99,235,0.08);--purple:#7c3aed;--purple-s:rgba(124,58,237,0.08);--teal:#0d9488;--teal-s:rgba(13,148,148,0.08);--rose:#e11d48;--rose-s:rgba(225,29,72,0.08)}
         body.light-mode::before{opacity:0}
-        @media(max-width:768px){.kpi-value{font-size:1.3rem}.s-table{font-size:.72rem;min-width:100%!important}.s-table th:first-child,.s-table td:first-child{display:none}.section-title{font-size:.85rem}.section-divider-text{font-size:.9rem}.kpi-tooltip{max-width:92vw;left:4vw!important}.tt-row{grid-template-columns:60px 1fr 70px 50px}}
+        .kpi-wilaya-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
+        @media(max-width:768px){.kpi-value{font-size:1.3rem}.s-table{font-size:.72rem;min-width:100%!important}.s-table th:first-child,.s-table td:first-child{display:none}.section-title{font-size:.85rem}.section-divider-text{font-size:.9rem}.kpi-wilaya-grid{grid-template-columns:1fr}.kpi-tooltip{max-width:92vw;left:4vw!important}.tt-row{grid-template-columns:60px 1fr 70px 50px}}
         @media(prefers-reduced-motion:reduce){.fade-up{animation:none;opacity:1;transform:none}.dash-card:hover,.kpi-card:hover{transform:none}}
     </style>
 </head>
@@ -139,7 +140,7 @@
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <div>
                 <div class="flex items-center gap-3 mb-2"><div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-emerald-500/20">GX</div><span class="text-sm font-semibold tracking-widest uppercase" style="color:var(--accent)">Guepex</span></div>
-                <h1 style="font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;color:#fff;line-height:1.2" id="mainTitle">Tableau de bord PAR JOUR</h1>
+                <h1 style="font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;color:#fff;line-height:1.2" id="mainTitle">Tableau de bord JOUR</h1>
                 <p style="color:var(--fg-m);font-size:.82rem;margin-top:.3rem" id="mainSubtitle">Skikda &middot; Annaba &middot; Jijel &mdash; Données du jour</p>
             </div>
             <div class="flex items-center gap-3">
@@ -151,20 +152,61 @@
 
     <!-- VUE JOUR (par défaut active) -->
     <div id="jour-view" class="view-container active">
-        <!-- KPIs JOUR -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-            <div class="kpi-card k-emerald fade-up d1"><div class="flex items-center justify-between mb-2"><div class="kpi-icon" style="background:var(--accent-s);color:var(--accent)"><i class="fas fa-user-plus"></i></div></div><div class="kpi-value" id="jour-kpiComptes">—</div><div class="kpi-label">Comptes ouverts (auj.)</div></div>
-            <div class="kpi-card k-blue fade-up d2"><div class="flex items-center justify-between mb-2"><div class="kpi-icon" style="background:var(--info-s);color:var(--info)"><i class="fas fa-boxes"></i></div></div><div class="kpi-value" id="jour-kpiExpedies">—</div><div class="kpi-label">Colis expédiés (auj.)</div></div>
-            <div class="kpi-card k-teal fade-up d3"><div class="flex items-center justify-between mb-2"><div class="kpi-icon" style="background:var(--teal-s);color:var(--teal)"><i class="fas fa-inbox"></i></div></div><div class="kpi-value" id="jour-kpiRecus">—</div><div class="kpi-label">Colis reçus (auj.)</div></div>
+        <!-- KPIs JOUR : 4 blocs (Région + 3 wilayas) -->
+        <div class="kpi-wilaya-grid fade-up d1">
+            <!-- KPI RÉGION (total Skikda+Annaba+Jijel) -->
+            <div class="kpi-card k-emerald">
+                
+                <div class="kpi-label">TOTAL RÉGION</div>
+                <div class="kpi-value" id="jour-kpiTotalOuverts" style="font-size:1.2rem;margin-top:0.25rem">—</div>
+                <div class="kpi-label">OUVERTS</div>
+                <div class="kpi-value" id="jour-kpiTotalExpedies" style="font-size:1.2rem">—</div>
+                <div class="kpi-label">EXPÉDIÉS</div>
+                <div class="kpi-value" id="jour-kpiTotalRecus" style="font-size:1.2rem">—</div>
+                <div class="kpi-label">REÇUS</div>
+            </div>
+            <!-- KPI Skikda -->
+            <div class="kpi-card k-blue">
+                <div class="kpi-label">TOTAL SKIKDA</div>
+                <div class="kpi-value" id="jour-kpiSkikdaOuverts">—</div><div class="kpi-label">SKIKDA · OUVERTS</div>
+                <div class="kpi-value" id="jour-kpiSkikdaExpedies" style="font-size:1.2rem;margin-top:0.25rem">—</div><div class="kpi-label">SKIKDA · EXPÉDIÉS</div>
+                <div class="kpi-value" id="jour-kpiSkikdaRecus" style="font-size:1.2rem;margin-top:0.25rem">—</div><div class="kpi-label">SKIKDA · REÇUS</div>
+            </div>
+            <!-- KPI Annaba -->
+            <div class="kpi-card k-teal">
+                <div class="kpi-label">TOTAL ANNABA</div>
+                <div class="kpi-value" id="jour-kpiAnnabaOuverts">—</div><div class="kpi-label">ANNABA · OUVERTS</div>
+                <div class="kpi-value" id="jour-kpiAnnabaExpedies" style="font-size:1.2rem;margin-top:0.25rem">—</div><div class="kpi-label">ANNABA · EXPÉDIÉS</div>
+                <div class="kpi-value" id="jour-kpiAnnabaRecus" style="font-size:1.2rem;margin-top:0.25rem">—</div><div class="kpi-label">ANNABA · REÇUS</div>
+            </div>
+            <!-- KPI Jijel -->
+            <div class="kpi-card k-amber">
+                <div class="kpi-label">TOTAL JIJEL</div>
+                <div class="kpi-value" id="jour-kpiJijelOuverts">—</div><div class="kpi-label">JIJEL · OUVERTS</div>
+                <div class="kpi-value" id="jour-kpiJijelExpedies" style="font-size:1.2rem;margin-top:0.25rem">—</div><div class="kpi-label">JIJEL · EXPÉDIÉS</div>
+                <div class="kpi-value" id="jour-kpiJijelRecus" style="font-size:1.2rem;margin-top:0.25rem">—</div><div class="kpi-label">JIJEL · REÇUS</div>
+            </div>
         </div>
 
-        <div class="section-divider fade-up d3"><span class="section-divider-label"><span class="section-divider-icon" style="background:var(--info-s);color:var(--info)"><i class="fas fa-chart-pie"></i></span><span class="section-divider-text" style="color:var(--fg)">Détail quotidien</span></span></div>
+        <div class="section-divider fade-up d3"><span class="section-divider-label"><span class="section-divider-icon" style="background:var(--info-s);color:var(--info)"><i class="fas fa-chart-pie"></i></span><span class="section-divider-text" style="color:var(--fg)">Synthèse quotidienne par agence</span></span></div>
 
-        <div class="space-y-5">
-            <section class="dash-card p-5 md:p-6 fade-up d3"><div class="section-title"><span class="iw" style="background:var(--accent-s);color:var(--accent)"><i class="fas fa-user-plus"></i></span>Comptes ouverts aujourd'hui<span class="sub"></span></div><div id="jour-comptesOuvertsWrapper" class="table-wrap"><div class="loader-wrap"><div class="loader-ring"></div><span class="loader-text">Chargement...</span></div></div></section>
-            <section class="dash-card p-5 md:p-6 fade-up d4"><div class="section-title"><span class="iw" style="background:var(--info-s);color:var(--info)"><i class="fas fa-truck"></i></span>Expédition aujourd'hui<span class="sub">colis expédiés par agence (avec zéro) · triés par expédiés décroissant</span></div><div id="jour-expeditionTodayWrapper" class="table-wrap"><div class="loader-wrap"><div class="loader-ring"></div><span class="loader-text">Chargement...</span></div></div></section>
-            <section class="dash-card p-5 md:p-6 fade-up d5"><div class="section-title"><span class="iw" style="background:var(--teal-s);color:var(--teal)"><i class="fas fa-inbox"></i></span>Colis reçus aujourd'hui<span class="sub">par type (SD / HS) · triés par total reçus décroissant</span></div><div id="jour-stopdeskTodayWrapper" class="table-wrap"><div class="loader-wrap"><div class="loader-ring"></div><span class="loader-text">Chargement...</span></div></div></section>
-        </div>
+        <!-- Table unique combinée -->
+        <section class="dash-card p-5 md:p-6 fade-up d4">
+            <div class="section-title">
+                <span class="iw" style="background:var(--info-s);color:var(--info)"><i class="fas fa-table"></i></span>
+                Détail par agence
+                <span class="sub">trié par Guepex expédiés (décroissant) · "-" = agence non Guepex</span>
+            </div>
+            <div id="jour-combinedTableWrapper" class="table-wrap">
+                <div class="loader-wrap"><div class="loader-ring"></div><span class="loader-text">Chargement...</span></div>
+            </div>
+        </section>
+
+        <!-- Graphique à barres Totale expédiés vs Guepex expédiés -->
+        <section class="dash-card p-4 md:p-5 fade-up d5">
+            <div class="section-title" style="margin-bottom:.6rem"><span class="iw" style="background:var(--info-s);color:var(--info)"><i class="fas fa-chart-bar"></i></span>Totale expédiés vs Guepex expédiés<span class="sub">par wilaya (avec % Guepex / Total)</span></div>
+            <div class="chart-box-sm"><canvas id="expComparisonChart" height="65"></canvas></div>
+        </section>
     </div>
 
     <!-- VUE OPÉRATIONNELLE (complète) -->
@@ -250,7 +292,7 @@
 })();
 
 // ============================================================
-// 2. SCRIPT POUR LA VUE JOUR (avec mapping manuel + tri par valeur décroissante)
+// 2. SCRIPT POUR LA VUE JOUR
 // ============================================================
 (function(){
     const TW = ['Skikda', 'Annaba', 'Jijel'];
@@ -260,9 +302,8 @@
     const API_OUVERTURES = 'https://opensheet.elk.sh/1EpOCxjjz2EniTBZs9pzrDOILueDOG-g6UBzmvd_PD0o/les_ouvertures';
     
     let store = { expdRaw: [], stopdeskdRaw: [], agencesRaw: [], ouverturesRaw: [] };
-    let allAgenciesList = [];
+    let chartComparison = null;
     
-    // Mapping manuel des agences
     const AGENCY_MAPPING = {
         "El Bouni": "Agence de El Bouni [Guepex]",
         "Annaba": "Agence de Sidi Brahim [Guepex]",
@@ -286,20 +327,15 @@
         if(!rawName) return '';
         const normalizedInput = normalizeKey(rawName);
         for(let [key, value] of Object.entries(AGENCY_MAPPING)){
-            if(normalizedInput === normalizeKey(key)){
-                return value;
-            }
+            if(normalizedInput === normalizeKey(key)) return value;
         }
-        if(window.agenceDictForJour && window.agenceDictForJour[normalizedInput]){
-            return window.agenceDictForJour[normalizedInput];
-        }
+        if(window.agenceDictForJour && window.agenceDictForJour[normalizedInput]) return window.agenceDictForJour[normalizedInput];
         return rawName;
     }
     
     function buildAgenceDict(){
         const dict = {};
         const rows = store.agencesRaw || [];
-        const agenciesSet = new Set();
         for(let row of rows){
             const rawKey = (row['agence f'] || '').trim();
             const official = (row['agence s'] || '').trim();
@@ -308,7 +344,6 @@
             if(rawKey && official){
                 const normKey = normalizeKey(rawKey);
                 dict[normKey] = official;
-                if(wil && official) agenciesSet.add(JSON.stringify({ wilaya: wil, agence: official }));
             }
             if(official){
                 const normOff = normalizeKey(official);
@@ -319,12 +354,9 @@
             }
         }
         window.agenceDictForJour = dict;
-        allAgenciesList = Array.from(agenciesSet).map(item => JSON.parse(item));
-        allAgenciesList.sort((a,b) => a.wilaya.localeCompare(b.wilaya) || a.agence.localeCompare(b.agence));
     }
     
-    // Comptes ouverts : tri par total décroissant
-    function getTodayOpenAccounts(){
+    function getOpenAccountsMap(){
         const today = getTodayKey();
         const rows = store.ouverturesRaw || [];
         const map = new Map();
@@ -336,19 +368,16 @@
             if(!wil || !agRaw) continue;
             let agDisplay = getDisplayAgencyName(agRaw);
             let key = `${wil}|${agDisplay}`;
-            map.set(key, { wilaya: wil, agence: agDisplay, total: (map.get(key)?.total || 0) + 1 });
+            map.set(key, (map.get(key) || 0) + 1);
         }
-        let result = Array.from(map.values());
-        result.sort((a,b) => b.total - a.total);
-        return result;
+        return map;
     }
     
-    // Expédition : tri par expédiés décroissant
-    function getTodayExpeditionsIncludingZeros(){
+    function getExpeditionsMap(){
         const todayKey = getTodayKey();
         const colName = `EXP ${todayKey}`;
         const rows = store.expdRaw || [];
-        const dataMap = new Map();
+        const map = new Map();
         for(let row of rows){
             let wil = (row['WILAYA'] || '').trim();
             if(TW.indexOf(wil) === -1) continue;
@@ -358,27 +387,50 @@
             if(isNaN(val)) val = 0;
             let agDisplay = getDisplayAgencyName(agRaw);
             let key = `${wil}|${agDisplay}`;
-            let existing = dataMap.get(key) || { wilaya: wil, agence: agDisplay, expedies: 0 };
-            existing.expedies += val;
-            dataMap.set(key, existing);
+            map.set(key, (map.get(key) || 0) + val);
         }
-        const finalMap = new Map();
-        for(let ag of allAgenciesList){
-            let key = `${ag.wilaya}|${ag.agence}`;
-            finalMap.set(key, { wilaya: ag.wilaya, agence: ag.agence, expedies: 0 });
-        }
-        for(let [key, val] of dataMap.entries()) finalMap.set(key, val);
-        let result = Array.from(finalMap.values());
-        result.sort((a,b) => b.expedies - a.expedies);
-        return result;
+        return map;
     }
     
-    // Colis reçus : tri par total reçus décroissant
-    function getTodayReceived(){
+    function getTotaleExpeditionsByWilaya(){
+        const todayKey = getTodayKey();
+        const colName = `TOTALE EXP ${todayKey}`;
+        const rows = store.expdRaw || [];
+        const totals = { "Skikda":0, "Annaba":0, "Jijel":0 };
+        for(let row of rows){
+            let wil = (row['WILAYA'] || '').trim();
+            if(TW.indexOf(wil) === -1) continue;
+            let val = parseInt(row[colName], 10);
+            if(isNaN(val)) val = 0;
+            totals[wil] = (totals[wil] || 0) + val;
+        }
+        return totals;
+    }
+    
+    function getGuepexExpeditionsByWilaya(){
+        const todayKey = getTodayKey();
+        const colName = `EXP ${todayKey}`;
+        const rows = store.expdRaw || [];
+        const totals = { "Skikda":0, "Annaba":0, "Jijel":0 };
+        for(let row of rows){
+            let wil = (row['WILAYA'] || '').trim();
+            if(TW.indexOf(wil) === -1) continue;
+            let agRaw = (row['AGENCE'] || '').trim();
+            let agDisplay = getDisplayAgencyName(agRaw);
+            if(!agDisplay.includes('[Guepex]')) continue;
+            let val = parseInt(row[colName], 10);
+            if(isNaN(val)) val = 0;
+            totals[wil] = (totals[wil] || 0) + val;
+        }
+        return totals;
+    }
+    
+    function getReceivedMaps(){
         const todayKey = getTodayKey();
         const colName = `COLIS RECU ${todayKey}`;
         const rows = store.stopdeskdRaw || [];
-        const agg = new Map();
+        const sdMap = new Map();
+        const hsMap = new Map();
         for(let row of rows){
             let wil = (row['WILAYA'] || '').trim();
             if(TW.indexOf(wil) === -1) continue;
@@ -389,79 +441,221 @@
             if(isNaN(val)) val = 0;
             let agDisplay = getDisplayAgencyName(agRaw);
             let key = `${wil}|${agDisplay}`;
-            if(!agg.has(key)) agg.set(key, { wilaya: wil, agence: agDisplay, sd: 0, hs: 0 });
-            let entry = agg.get(key);
-            if(type === 'SD') entry.sd += val;
-            else if(type === 'HS') entry.hs += val;
+            if(type === 'SD') sdMap.set(key, (sdMap.get(key) || 0) + val);
+            else if(type === 'HS') hsMap.set(key, (hsMap.get(key) || 0) + val);
         }
-        let result = Array.from(agg.values());
-        result.sort((a,b) => (b.sd + b.hs) - (a.sd + a.hs));
+        return { sdMap, hsMap };
+    }
+    
+    function collectAllAgencies(){
+        const agencies = new Set();
+        // Depuis AGENCES
+        for(let row of store.agencesRaw){
+            let wil = (row['wilaya'] || '').trim();
+            let ag = (row['agence s'] || '').trim();
+            if(wil && TW.indexOf(wil) !== -1 && ag) agencies.add(`${wil}|${ag}`);
+        }
+        // Depuis expd
+        for(let row of store.expdRaw){
+            let wil = (row['WILAYA'] || '').trim();
+            let agRaw = (row['AGENCE'] || '').trim();
+            if(wil && TW.indexOf(wil) !== -1 && agRaw){
+                let agDisplay = getDisplayAgencyName(agRaw);
+                agencies.add(`${wil}|${agDisplay}`);
+            }
+        }
+        // Depuis stopdeskd
+        for(let row of store.stopdeskdRaw){
+            let wil = (row['WILAYA'] || '').trim();
+            let agRaw = (row['AGENCE'] || '').trim();
+            if(wil && TW.indexOf(wil) !== -1 && agRaw){
+                let agDisplay = getDisplayAgencyName(agRaw);
+                agencies.add(`${wil}|${agDisplay}`);
+            }
+        }
+        // Depuis ouvertures
+        for(let row of store.ouverturesRaw){
+            let wil = (row['WILAYA'] || '').trim();
+            let agRaw = (row['Agence'] || '').trim();
+            if(wil && TW.indexOf(wil) !== -1 && agRaw){
+                let agDisplay = getDisplayAgencyName(agRaw);
+                agencies.add(`${wil}|${agDisplay}`);
+            }
+        }
+        const result = [];
+        for(let key of agencies){
+            const [wil, ag] = key.split('|');
+            result.push({ wilaya: wil, agence: ag });
+        }
         return result;
     }
     
-    function renderComptesOuverts(){
-        const data = getTodayOpenAccounts();
-        const container = document.getElementById('jour-comptesOuvertsWrapper');
-        if(!data.length){
-            container.innerHTML = `<div class="empty-state"><i class="fas fa-calendar-day"></i>Aucun compte ouvert aujourd'hui pour Skikda, Annaba ou Jijel</div>`;
-            return;
+    function updateKPIs(){
+        const allAgencies = collectAllAgencies();
+        const openMap = getOpenAccountsMap();
+        const expMap = getExpeditionsMap();
+        const { sdMap, hsMap } = getReceivedMaps();
+        
+        let totalOuverts = 0, totalExpedies = 0, totalRecus = 0;
+        const wilayaTotals = { "Skikda":{o:0,e:0,r:0}, "Annaba":{o:0,e:0,r:0}, "Jijel":{o:0,e:0,r:0} };
+        
+        for(let agency of allAgencies){
+            const key = `${agency.wilaya}|${agency.agence}`;
+            const ouvert = openMap.get(key) || 0;
+            const expedies = expMap.get(key) || 0;
+            const sd = sdMap.get(key) || 0;
+            const hs = hsMap.get(key) || 0;
+            const recus = sd + hs;
+            totalOuverts += ouvert;
+            totalExpedies += expedies;
+            totalRecus += recus;
+            if(wilayaTotals[agency.wilaya]){
+                wilayaTotals[agency.wilaya].o += ouvert;
+                wilayaTotals[agency.wilaya].e += expedies;
+                wilayaTotals[agency.wilaya].r += recus;
+            }
         }
-        let html = `<table class="s-table"><thead><tr><th>WILAYA</th><th>AGENCE</th><th>OUVERTS</th></tr></thead><tbody>`;
-        for(let row of data){
-            html += `<tr><td class="td-muted">${escapeHtml(row.wilaya)}</td><td class="agent-name">${escapeHtml(row.agence)}</td><td class="td-bold">${fmtNum(row.total)}</td></tr>`;
+        
+        // KPI région (bloc unique)
+        document.getElementById('jour-kpiTotalOuverts').innerText = fmtNum(totalOuverts);
+        document.getElementById('jour-kpiTotalExpedies').innerText = `📦 ${fmtNum(totalExpedies)}`;
+        document.getElementById('jour-kpiTotalRecus').innerText = `📬 ${fmtNum(totalRecus)}`;
+        
+        // Skikda
+        document.getElementById('jour-kpiSkikdaOuverts').innerText = fmtNum(wilayaTotals.Skikda.o);
+        document.getElementById('jour-kpiSkikdaExpedies').innerText = `📦 ${fmtNum(wilayaTotals.Skikda.e)}`;
+        document.getElementById('jour-kpiSkikdaRecus').innerText = `📬 ${fmtNum(wilayaTotals.Skikda.r)}`;
+        // Annaba
+        document.getElementById('jour-kpiAnnabaOuverts').innerText = fmtNum(wilayaTotals.Annaba.o);
+        document.getElementById('jour-kpiAnnabaExpedies').innerText = `📦 ${fmtNum(wilayaTotals.Annaba.e)}`;
+        document.getElementById('jour-kpiAnnabaRecus').innerText = `📬 ${fmtNum(wilayaTotals.Annaba.r)}`;
+        // Jijel
+        document.getElementById('jour-kpiJijelOuverts').innerText = fmtNum(wilayaTotals.Jijel.o);
+        document.getElementById('jour-kpiJijelExpedies').innerText = `📦 ${fmtNum(wilayaTotals.Jijel.e)}`;
+        document.getElementById('jour-kpiJijelRecus').innerText = `📬 ${fmtNum(wilayaTotals.Jijel.r)}`;
+        
+        // Graphique
+        const totaleData = getTotaleExpeditionsByWilaya();
+        const guepexData = getGuepexExpeditionsByWilaya();
+        updateComparisonChart(totaleData, guepexData);
+    }
+    
+    function updateComparisonChart(totaleData, guepexData){
+        const ctx = document.getElementById('expComparisonChart').getContext('2d');
+        const labels = ['Skikda', 'Annaba', 'Jijel'];
+        const totaleValues = labels.map(l => totaleData[l] || 0);
+        const guepexValues = labels.map(l => guepexData[l] || 0);
+        const percentages = labels.map(l => {
+            const total = totaleData[l] || 0;
+            const guepex = guepexData[l] || 0;
+            if(total === 0) return 0;
+            return Math.round((guepex / total) * 100);
+        });
+        
+        if(chartComparison) chartComparison.destroy();
+        chartComparison = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+                    { label: 'Totale expédiés', data: totaleValues, backgroundColor: 'rgba(59,130,246,0.7)', borderRadius: 4, barPercentage: 0.65, categoryPercentage: 0.8 },
+                    { label: 'Guepex expédiés', data: guepexValues, backgroundColor: 'rgba(16,185,129,0.8)', borderRadius: 4, barPercentage: 0.65, categoryPercentage: 0.8 }
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: true,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            afterBody: function(context){
+                                const index = context[0].dataIndex;
+                                if(context[0].dataset.label === 'Guepex expédiés') return `Part du total : ${percentages[index]}%`;
+                                return null;
+                            }
+                        }
+                    },
+                    legend: { position: 'top', labels: { color: '#e8ecf4', font: { size: 10 } } }
+                },
+                scales: {
+                    x: { ticks: { color: '#7a8299' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                    y: { ticks: { color: '#7a8299', callback: function(v){ return fmtNum(v); } }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                }
+            }
+        });
+    }
+    
+    function renderCombinedTable(){
+        const allAgencies = collectAllAgencies();
+        const openMap = getOpenAccountsMap();
+        const expMap = getExpeditionsMap();
+        const { sdMap, hsMap } = getReceivedMaps();
+        const todayKey = getTodayKey();
+        const colNameTotale = `TOTALE EXP ${todayKey}`;
+        
+        const rows = [];
+        for(let agency of allAgencies){
+            const key = `${agency.wilaya}|${agency.agence}`;
+            const ouvert = openMap.get(key) || 0;
+            const expedies = expMap.get(key) || 0;
+            const isGuepex = agency.agence.includes('[Guepex]');
+            let sd = sdMap.get(key) || 0;
+            let hs = hsMap.get(key) || 0;
+            let totalRecus = sd + hs;
+            if(!isGuepex){
+                sd = hs = totalRecus = '-';
+            } else {
+                sd = fmtNum(sd);
+                hs = fmtNum(hs);
+                totalRecus = fmtNum(totalRecus);
+            }
+            // Récupération du Totale expédiés
+            let totaleExpedies = 0;
+            for(let expRow of store.expdRaw){
+                let wil = (expRow['WILAYA'] || '').trim();
+                let agRaw = (expRow['AGENCE'] || '').trim();
+                if(wil === agency.wilaya && getDisplayAgencyName(agRaw) === agency.agence){
+                    let val = parseInt(expRow[colNameTotale], 10);
+                    if(!isNaN(val)) totaleExpedies += val;
+                }
+            }
+            rows.push({
+                wilaya: agency.wilaya,
+                agence: agency.agence,
+                ouvert: ouvert,
+                expedies: expedies,
+                totaleExpedies: totaleExpedies,
+                totalRecus: totalRecus,
+                sd: sd,
+                hs: hs,
+                isGuepex: isGuepex
+            });
+        }
+        rows.sort((a,b) => b.expedies - a.expedies);
+        
+        const container = document.getElementById('jour-combinedTableWrapper');
+        if(!rows.length){ container.innerHTML = `<div class="empty-state"><i class="fas fa-table"></i>Aucune agence trouvée</div>`; return; }
+        let html = `<table class="s-table"><thead><tr><th>WILAYA</th><th>AGENCE</th><th>OUVERTS</th><th>GUEPEX EXPÉDIÉS</th><th>TOTALE EXPÉDIÉS</th><th>TOTAL REÇUS</th><th>COLIS REÇUS (SD)</th><th>COLIS REÇUS (HS)</th></tr></thead><tbody>`;
+        for(let row of rows){
+            html += `<tr>
+                        <td class="td-muted">${escapeHtml(row.wilaya)}</td>
+                        <td class="agent-name">${escapeHtml(row.agence)}</td>
+                        <td class="td-bold">${fmtNum(row.ouvert)}</td>
+                        <td class="td-bold">${fmtNum(row.expedies)}</td>
+                        <td class="td-bold" style="color:var(--accent)">${fmtNum(row.totaleExpedies)}</td>
+                        <td class="td-bold">${row.totalRecus}</td>
+                        <td class="td-bold">${row.sd}</td>
+                        <td class="td-bold">${row.hs}</td>
+                       </tr>`;
         }
         html += `</tbody></table>`;
         container.innerHTML = html;
     }
     
-    function renderExpeditionToday(){
-        const data = getTodayExpeditionsIncludingZeros();
-        const container = document.getElementById('jour-expeditionTodayWrapper');
-        if(!data.length){
-            container.innerHTML = `<div class="empty-state"><i class="fas fa-truck"></i>Aucune agence trouvée pour Skikda, Annaba ou Jijel</div>`;
-            return;
-        }
-        let html = `<table class="s-table"><thead><tr><th>WILAYA</th><th>AGENCE</th><th>EXPÉDIÉS</th></tr></thead><tbody>`;
-        for(let row of data){
-            html += `<tr><td class="td-muted">${escapeHtml(row.wilaya)}</td><td class="agent-name">${escapeHtml(row.agence)}</td><td class="td-bold">${fmtNum(row.expedies)}</td></tr>`;
-        }
-        html += `</tbody></table>`;
-        container.innerHTML = html;
-    }
-    
-    function renderStopdeskToday(){
-        const data = getTodayReceived();
-        const container = document.getElementById('jour-stopdeskTodayWrapper');
-        if(!data.length){
-            container.innerHTML = `<div class="empty-state"><i class="fas fa-inbox"></i>Aucun colis reçu aujourd'hui pour Skikda, Annaba ou Jijel</div>`;
-            return;
-        }
-        let html = `<table class="s-table"><thead><tr><th>WILAYA</th><th>AGENCE</th><th>COLIS REÇUS (SD)</th><th>COLIS REÇUS (HS)</th><th>TOTAL REÇUS</th></tr></thead><tbody>`;
-        for(let row of data){
-            let total = (row.sd||0)+(row.hs||0);
-            html += `<tr><td class="td-muted">${escapeHtml(row.wilaya)}</td><td class="agent-name">${escapeHtml(row.agence)}</td><td class="td-bold">${fmtNum(row.sd)}</td><td class="td-bold">${fmtNum(row.hs)}</td><td class="td-bold" style="color:var(--accent)">${fmtNum(total)}</td></tr>`;
-        }
-        html += `</tbody></table>`;
-        container.innerHTML = html;
-    }
-    
-    function updateJourKPIs(){
-        const comptes = getTodayOpenAccounts().reduce((a,c)=>a+c.total,0);
-        const exp = getTodayExpeditionsIncludingZeros().reduce((a,c)=>a+c.expedies,0);
-        const rec = getTodayReceived().reduce((a,c)=>a+(c.sd||0)+(c.hs||0),0);
-        document.getElementById('jour-kpiComptes').innerText = fmtNum(comptes);
-        document.getElementById('jour-kpiExpedies').innerText = fmtNum(exp);
-        document.getElementById('jour-kpiRecus').innerText = fmtNum(rec);
-    }
-    
-    function escapeHtml(str){
-        if(!str) return '';
-        return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
-    }
+    function escapeHtml(str){ if(!str) return ''; return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
     
     async function loadJourData(){
-        const wrappers = ['jour-comptesOuvertsWrapper','jour-expeditionTodayWrapper','jour-stopdeskTodayWrapper'];
-        wrappers.forEach(id => document.getElementById(id).innerHTML = `<div class="loader-wrap"><div class="loader-ring"></div><span class="loader-text">Chargement...</span></div>`);
+        const container = document.getElementById('jour-combinedTableWrapper');
+        if(container) container.innerHTML = `<div class="loader-wrap"><div class="loader-ring"></div><span class="loader-text">Chargement...</span></div>`;
         try{
             const [expdRes, stopRes, agencesRes, ouverturesRes] = await Promise.all([
                 fetch(API_EXPD).then(r=>r.json()).catch(()=>[]),
@@ -474,14 +668,9 @@
             store.agencesRaw = agencesRes;
             store.ouverturesRaw = ouverturesRes;
             buildAgenceDict();
-            renderComptesOuverts();
-            renderExpeditionToday();
-            renderStopdeskToday();
-            updateJourKPIs();
-        }catch(e){
-            console.error(e);
-            wrappers.forEach(id => document.getElementById(id).innerHTML = `<div class="empty-state"><i class="fas fa-exclamation-triangle"></i>Erreur de chargement</div>`);
-        }
+            renderCombinedTable();
+            updateKPIs();
+        }catch(e){ console.error(e); if(container) container.innerHTML = `<div class="empty-state"><i class="fas fa-exclamation-triangle"></i>Erreur de chargement</div>`; }
     }
     loadJourData();
 })();
@@ -678,14 +867,14 @@
     function chartColors(){var l=isLight();return{ttBg:l?'#ffffff':'#1e2440',ttTitle:l?'#111827':'#e8ecf4',ttBody:l?'#111827':'#e8ecf4',ttBorder:l?'rgba(0,0,0,0.1)':'rgba(255,255,255,0.08)',grid:l?'rgba(0,0,0,0.05)':'rgba(255,255,255,0.02)',tick:l?'#9ca3af':'#4a5168',ptBorder:l?'#ffffff':'#181d32'}}
     function makeLineOpts(){var c=chartColors();return{responsive:true,maintainAspectRatio:true,interaction:{intersect:false,mode:'index'},plugins:{legend:{position:'top',align:'end',labels:{color:c.tick,font:{family:"'DM Sans',sans-serif",size:9,weight:500},boxWidth:8,boxHeight:2,borderRadius:2,useBorderRadius:true,padding:8}},tooltip:{backgroundColor:c.ttBg,titleColor:c.ttTitle,bodyColor:c.ttBody,borderColor:c.ttBorder,borderWidth:1,cornerRadius:6,padding:8,titleFont:{family:"'Space Grotesk',sans-serif",weight:600,size:10},bodyFont:{family:"'DM Sans',sans-serif",size:9},callbacks:{label:function(v){return ' '+v.dataset.label+' : '+fmtNum(v.parsed.y)}}}},scales:{x:{grid:{color:c.grid,drawBorder:false},ticks:{color:c.tick,font:{family:"'DM Sans',sans-serif",size:8},maxRotation:0}},y:{grid:{color:c.grid,drawBorder:false},ticks:{color:c.tick,font:{family:"'DM Sans',sans-serif",size:8},callback:function(v){return fmtNum(v)},maxTicksLimit:5}}}}}
     function updateCharts(){var ed=getMonthlyExpPerWilaya(),rd=getMonthlyRecuPerWilaya();var labels=ed.labels,c=chartColors();var totExp=new Array(labels.length).fill(0),totLiv=new Array(labels.length).fill(0);TW.forEach(function(w){for(var i=0;i<labels.length;i++){totExp[i]+=ed.data[w].exp[i];totLiv[i]+=ed.data[w].liv[i]}});if(chartBar)chartBar.destroy();chartBar=new Chart(document.getElementById('expChart').getContext('2d'),{type:'bar',data:{labels:labels,datasets:[{label:'Expédiés',data:totExp,backgroundColor:'rgba(59,130,246,0.55)',hoverBackgroundColor:'rgba(59,130,246,0.8)',borderRadius:3,borderSkipped:false,barPercentage:.55,categoryPercentage:.5},{label:'Livrés',data:totLiv,backgroundColor:'rgba(16,185,129,0.55)',hoverBackgroundColor:'rgba(16,185,129,0.8)',borderRadius:3,borderSkipped:false,barPercentage:.55,categoryPercentage:.5}]},options:makeLineOpts()});var expDS=[];TW.forEach(function(w){if(curWil!=='ALL'&&w!==curWil)return;expDS.push({label:w+' Exp',data:ed.data[w].exp,borderColor:WC[w],backgroundColor:'transparent',tension:.4,pointRadius:1.5,pointHoverRadius:4,pointBackgroundColor:WC[w],pointBorderColor:c.ptBorder,pointBorderWidth:1.5,borderWidth:2,borderDash:[]});expDS.push({label:w+' Liv',data:ed.data[w].liv,borderColor:WC[w],backgroundColor:WCS[w],tension:.4,pointRadius:1,pointHoverRadius:3,pointBackgroundColor:WC[w],pointBorderColor:c.ptBorder,pointBorderWidth:1.5,borderWidth:1.5,borderDash:[4,3],fill:true})});if(chartExpLine)chartExpLine.destroy();chartExpLine=new Chart(document.getElementById('expLineChart').getContext('2d'),{type:'line',data:{labels:labels,datasets:expDS},options:makeLineOpts()});var recuDS=[];TW.forEach(function(w){if(curWil!=='ALL'&&w!==curWil)return;recuDS.push({label:w,data:rd.data[w],borderColor:WC[w],backgroundColor:WCS[w],fill:true,tension:.4,pointRadius:1.5,pointHoverRadius:4,pointBackgroundColor:WC[w],pointBorderColor:c.ptBorder,pointBorderWidth:1.5,borderWidth:2})});if(chartRecuLine)chartRecuLine.destroy();chartRecuLine=new Chart(document.getElementById('recuLineChart').getContext('2d'),{type:'line',data:{labels:labels,datasets:recuDS},options:makeLineOpts()});}
-    function emptyRow(c,i,m){return'<td><td colspan="'+c+'"><div class="empty-state"><i class="fas fa-'+i+'"></i>'+m+'</div></td></tr>'}
-    function renderComptes(){var d=buildComptes();document.getElementById('comptesOuvertsWrapper').innerHTML='<table class="s-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Ouverts</th><th>Actifs</th><th>Taux</th></tr></thead><tbody>'+(d.map(function(r){return'<tr><td class="td-muted">'+r.wil+'</td><td class="agent-name">'+r.ag+'</td><td class="td-bold">'+fmtNum(r.tot)+'</td><td class="td-bold" style="color:var(--accent)">'+fmtNum(r.act)+'</td><td>'+tauxBadge(r.taux)+'</td></tr>'}).join('')||emptyRow(5,'inbox','Aucune donnée'))+'</tbody></table>'}
-    function renderExpedition(){var d=buildExpedition();document.getElementById('expeditionGlobaleWrapper').innerHTML='<table class="s-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Expédiés</th><th>Livrés</th><th>Taux</th></tr></thead><tbody>'+(d.map(function(r){return'<tr><td class="td-muted">'+r.wil+'</td><td class="agent-name">'+r.ag+'</td><td class="td-bold">'+fmtNum(r.exp)+'</td><td class="td-bold" style="color:var(--accent)">'+fmtNum(r.liv)+'</td><td>'+tauxBadge(r.taux)+'</td></tr>'}).join('')||emptyRow(5,'inbox','Aucune donnée'))+'</tbody></table>'}
-    function renderPersonnel(){var d=buildPersonnel();document.getElementById('personnelWrapper').innerHTML='<table class="s-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Agent</th><th>Profession</th><th>Contrat</th><th>Début</th><th>Fin</th><th>Restant</th></tr></thead><tbody>'+(d.map(function(p){return'<tr><td class="td-muted">'+p.wil+'</td><td>'+p.ag+'</td><td class="agent-name">'+p.name+'</td><td class="td-muted">'+p.pro+'</td><td><span class="badge badge-neutral">'+p.type+'</span></td><td class="td-muted">'+p.deb+'</td><td class="td-muted">'+p.fin+'</td><td>'+p.rh+'</td></tr>'}).join('')||emptyRow(8,'user-slash','Aucun agent'))+'</tbody></table>'}
-    function renderConges(){var d=buildConges();document.getElementById('congeMaladieWrapper').innerHTML='<table class="s-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Agent</th><th>Profession</th><th>Type</th><th>Début</th><th>Fin</th><th>Restant</th></tr></thead><tbody>'+(d.map(function(c){return'<tr><td class="td-muted">'+c.wil+'</td><td>'+c.ag+'</td><td class="agent-name">'+c.name+'</td><td class="td-muted">'+c.pro+'</td><td><span class="badge '+c.tb+'">'+c.type+'</span></td><td class="td-muted">'+c.deb+'</td><td class="td-muted">'+c.fin+'</td><td style="font-family:Space Grotesk,sans-serif;font-weight:600;color:var(--info)">'+c.jr+'</td></tr>'}).join('')||emptyRow(8,'clipboard-check','Aucun congé/maladie'))+'</tbody></table>'}
-    function renderStopdesk(){var d=buildStopdesk();document.getElementById('agencesStopdeskWrapper').innerHTML='<table class="s-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Type</th><th>Reçus</th><th>Livrés</th><th>Taux</th></tr></thead><tbody>'+(d.map(function(s){return'<tr><td class="td-muted">'+s.wil+'</td><td class="agent-name">'+s.ag+'</td><td><span class="badge badge-purple">'+s.tp+'</span></td><td class="td-bold">'+fmtNum(s.tr)+'</td><td class="td-bold" style="color:var(--accent)">'+fmtNum(s.tl)+'</td><td>'+tauxBadge(s.taux)+'</td></tr>'}).join('')||emptyRow(6,'building','Aucune donnée'))+'</tbody></table>'}
-    function renderLivreurs(){var result=buildLivreurs();var d=result.data,mn=result.monthName;document.getElementById('livreurMonthBadge').textContent=mn?'('+mn+')':'';document.getElementById('livreursWrapper').innerHTML='<table class="s-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Livreur</th><th>Reçus</th><th>Livrés</th><th>Taux</th></tr></thead><tbody>'+(d.map(function(l){return'<tr><td class="td-muted">'+l.wil+'</td><td>'+l.ag+'</td><td class="agent-name">'+l.nm+'</td><td class="td-bold">'+fmtNum(l.rc)+'</td><td class="td-bold" style="color:var(--accent)">'+fmtNum(l.lv)+'</td><td>'+tauxBadge(l.taux)+'</td></tr>'}).join('')||emptyRow(6,'truck','Aucune donnée pour cette période'))+'</tbody></tr>'}
-    function renderLocaux(){var d=buildLocaux();document.getElementById('locauxWrapper').innerHTML='<table class="s-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Durée</th><th>Fin contrat</th><th>Restant</th></tr></thead><tbody>'+(d.map(function(l){return'<tr><td class="td-muted">'+l.wil+'</td><td class="agent-name">'+l.ag+'</td><td>'+l.dur+'</td><td class="td-muted">'+l.fc+'</td><td>'+l.rs+'</td></tr>'}).join('')||emptyRow(5,'home','Aucun local'))+'</tbody></tr>'}
+    function emptyRow(c,i,m){return'<tr><td colspan="'+c+'"><div class="empty-state"><i class="fas fa-'+i+'"></i>'+m+'</div></td></tr>'}
+    function renderComptes(){var d=buildComptes();document.getElementById('comptesOuvertsWrapper').innerHTML='<table class="s-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Ouverts</th><th>Actifs</th><th>Taux</th></tr></thead><tbody>'+(d.map(function(r){return'<tr><td class="td-muted">'+r.wil+'</td><td class="agent-name">'+r.ag+'</td><td class="td-bold">'+fmtNum(r.tot)+'</td><td class="td-bold" style="color:var(--accent)">'+fmtNum(r.act)+'</td><td class="td-bold">'+tauxBadge(r.taux)+'</td></tr>'}).join('')||emptyRow(5,'inbox','Aucune donnée'))+'</tbody></table>'}
+    function renderExpedition(){var d=buildExpedition();document.getElementById('expeditionGlobaleWrapper').innerHTML='<table class="s-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Expédiés</th><th>Livrés</th><th>Taux</th></tr></thead><tbody>'+(d.map(function(r){return'<tr><td class="td-muted">'+r.wil+'</td><td class="agent-name">'+r.ag+'</td><td class="td-bold">'+fmtNum(r.exp)+'</td><td class="td-bold" style="color:var(--accent)">'+fmtNum(r.liv)+'</td><td class="td-bold">'+tauxBadge(r.taux)+'</td></tr>'}).join('')||emptyRow(5,'inbox','Aucune donnée'))+'</tbody></table>'}
+    function renderPersonnel(){var d=buildPersonnel();document.getElementById('personnelWrapper').innerHTML='<table class="s-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Agent</th><th>Profession</th><th>Contrat</th><th>Début</th><th>Fin</th><th>Restant</th></tr></thead><tbody>'+(d.map(function(p){return'<tr><td class="td-muted">'+p.wil+'</td><td class="td-muted">'+p.ag+'</td><td class="agent-name">'+p.name+'</td><td class="td-muted">'+p.pro+'</td><td><span class="badge badge-neutral">'+p.type+'</span></td><td class="td-muted">'+p.deb+'</td><td class="td-muted">'+p.fin+'</td><td class="td-muted">'+p.rh+'</td></tr>'}).join('')||emptyRow(8,'user-slash','Aucun agent'))+'</tbody></tr>'}
+    function renderConges(){var d=buildConges();document.getElementById('congeMaladieWrapper').innerHTML='<table class="s-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Agent</th><th>Profession</th><th>Type</th><th>Début</th><th>Fin</th><th>Restant</th></tr></thead><tbody>'+(d.map(function(c){return'</tr><td class="td-muted">'+c.wil+'</td><td class="td-muted">'+c.ag+'</td><td class="agent-name">'+c.name+'</td><td class="td-muted">'+c.pro+'</td><td><span class="badge '+c.tb+'">'+c.type+'</span></td><td class="td-muted">'+c.deb+'</td><td class="td-muted">'+c.fin+'</td><td style="font-family:Space Grotesk,sans-serif;font-weight:600;color:var(--info)">'+c.jr+'</td></tr>'}).join('')||emptyRow(8,'clipboard-check','Aucun congé/maladie'))+'</tbody></table>'}
+    function renderStopdesk(){var d=buildStopdesk();document.getElementById('agencesStopdeskWrapper').innerHTML='<table class="s-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Type</th><th>Reçus</th><th>Livrés</th><th>Taux</th></tr></thead><tbody>'+(d.map(function(s){return'<tr><td class="td-muted">'+s.wil+'</td><td class="agent-name">'+s.ag+'</td><td><span class="badge badge-purple">'+s.tp+'</span></td><td class="td-bold">'+fmtNum(s.tr)+'</td><td class="td-bold" style="color:var(--accent)">'+fmtNum(s.tl)+'</td><td class="td-bold">'+tauxBadge(s.taux)+'</td></tr>'}).join('')||emptyRow(6,'building','Aucune donnée'))+'</tbody></tr>'}
+    function renderLivreurs(){var result=buildLivreurs();var d=result.data,mn=result.monthName;document.getElementById('livreurMonthBadge').textContent=mn?'('+mn+')':'';document.getElementById('livreursWrapper').innerHTML='<table class="s-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Livreur</th><th>Reçus</th><th>Livrés</th><th>Taux</th></tr></thead><tbody>'+(d.map(function(l){return'<tr><td class="td-muted">'+l.wil+'</td><td class="td-muted">'+l.ag+'</td><td class="agent-name">'+l.nm+'</td><td class="td-bold">'+fmtNum(l.rc)+'</td><td class="td-bold" style="color:var(--accent)">'+fmtNum(l.lv)+'</td><td class="td-bold">'+tauxBadge(l.taux)+'</td></tr>'}).join('')||emptyRow(6,'truck','Aucune donnée pour cette période'))+'</tbody></table>'}
+    function renderLocaux(){var d=buildLocaux();document.getElementById('locauxWrapper').innerHTML='<table class="s-table"><thead><tr><th>Wilaya</th><th>Agence</th><th>Durée</th><th>Fin contrat</th><th>Restant</th></tr></thead><tbody>'+(d.map(function(l){return'<tr><td class="td-muted">'+l.wil+'</td><td class="agent-name">'+l.ag+'</td><td class="td-muted">'+l.dur+'</td><td class="td-muted">'+l.fc+'</td><td class="td-muted">'+l.rs+'</td><tr>'}).join('')||emptyRow(5,'home','Aucun local'))+'</tbody></table>'}
     function refreshAll(){curAg=document.getElementById('agenceFilter').value;curWil=document.getElementById('wilayaFilter').value;fDate=document.getElementById('fromDate').value;tDate=document.getElementById('toDate').value;updateKPIs();renderComptes();renderExpedition();renderPersonnel();renderConges();renderStopdesk();renderLivreurs();renderLocaux();updateCharts()}
     function populateFilters(){var s=new Set();['stopdeskRaw','livreurRaw','agentsRaw','comptesRaw','localRaw'].forEach(function(k){(store[k]||[]).forEach(function(r){var a=r['AGENCE']||r['Agence'];if(a)s.add(a)})});var sel=document.getElementById('agenceFilter');sel.innerHTML='<option value="ALL">Toutes les agences</option>';Array.from(s).sort().forEach(function(a){sel.appendChild(new Option(a,a))})}
     async function loadAll(){var ids=['comptesOuvertsWrapper','expeditionGlobaleWrapper','personnelWrapper','congeMaladieWrapper','agencesStopdeskWrapper','livreursWrapper','locauxWrapper'];ids.forEach(function(id){document.getElementById(id).innerHTML='<div class="loader-wrap"><div class="loader-ring"></div><span class="loader-text">Chargement...</span></div>'});try{var ks=['compte','commercial','agences','exp2025','exp2026','nvTop2026','nvTop2025','stopdesk','livreur','agents','maladie','local'],sks=['comptesRaw','commercialRaw','agencesRaw','exp2025Raw','exp2026Raw','nvTop2026Raw','nvTop2025Raw','stopdeskRaw','livreurRaw','agentsRaw','maladieRaw','localRaw'];var res=await Promise.all(ks.map(function(k){return fetch(API[k]).then(function(r){return r.json()}).catch(function(){return[]})}));res.forEach(function(r,i){store[sks[i]]=r});buildAgenceDict();populateFilters();refreshAll()}catch(e){console.error(e);ids.forEach(function(id){document.getElementById(id).innerHTML='<div class="empty-state" style="color:var(--danger)"><i class="fas fa-exclamation-circle"></i>Erreur de chargement</div>'})}}
@@ -718,6 +907,7 @@
         if(window.chartBar) window.chartBar.update();
         if(window.chartExpLine) window.chartExpLine.update();
         if(window.chartRecuLine) window.chartRecuLine.update();
+        if(window.chartComparison) window.chartComparison.update();
     }
     document.getElementById('themeToggle').addEventListener('click', toggleTheme);
     initTheme();
